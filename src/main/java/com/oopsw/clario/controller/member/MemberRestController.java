@@ -3,7 +3,7 @@ package com.oopsw.clario.controller.member;
 import com.oopsw.clario.config.auth.CustomOAuth2User;
 import com.oopsw.clario.config.auth.authdto.OAuthAttributes;
 import com.oopsw.clario.domain.member.Member;
-import com.oopsw.clario.dto.UpdateMemberDTO;
+import com.oopsw.clario.dto.member.UpdateMemberDTO;
 import com.oopsw.clario.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -107,7 +107,7 @@ public class MemberRestController {
 
     @GetMapping("/agree")
     public ResponseEntity<String> agree() {
-        return ResponseEntity.ok("account/join");
+        return ResponseEntity.ok("/html/account/join.html");
     }
 
     @PostMapping("/join")

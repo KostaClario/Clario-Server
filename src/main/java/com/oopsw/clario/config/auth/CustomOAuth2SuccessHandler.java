@@ -40,9 +40,12 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
         // 회원 여부 확인
         Member member = memberRepository.findByEmail(email).orElse(null);
 
-        String redirectUrl = (member != null && Boolean.TRUE.equals(member.getActivation()))
-                ? "/dashboard"
-                : "/privacy";
+        String redirectUrl;
+        if (member != null && Boolean.TRUE.equals(member.getActivation())) {
+            redirectUrl = "http://localhost:8883/dashboard.html";
+        } else {
+            redirectUrl = "http://localhost:8883/html/account/privacy.html?token=" + token;
+        }
 
         log.info("OAuth 로그인 성공 - 리다이렉트: {}", redirectUrl);
         response.sendRedirect(redirectUrl);

@@ -77,6 +77,14 @@
 </main>
 
 <script>
+    // JWT가 URL 쿼리로 전달된 경우 저장
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    if (token) {
+        sessionStorage.setItem('jwt', token);
+        console.log('jwt 저장 성공', token)
+    }
+
     axios.defaults.baseURL = 'http://127.0.0.1:8883';
     function goToLogin() {
         // 백엔드에서 loginView 경로를 응답으로 주기 때문에 해당 경로로 이동

@@ -3,7 +3,7 @@ package com.oopsw.clario.controller.member;
 import com.oopsw.clario.config.auth.CustomOAuth2User;
 import com.oopsw.clario.config.auth.authdto.OAuthAttributes;
 import com.oopsw.clario.domain.member.Member;
-import com.oopsw.clario.dto.UpdateMemberDTO;
+import com.oopsw.clario.dto.member.UpdateMemberDTO;
 import com.oopsw.clario.service.MemberService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 

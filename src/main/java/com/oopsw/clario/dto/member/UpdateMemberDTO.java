@@ -1,4 +1,4 @@
-package com.oopsw.clario.dto;
+package com.oopsw.clario.dto.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

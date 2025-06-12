@@ -39,6 +39,8 @@ public class SecurityConfig {
 
                                 // 로그인 및 회원가입 관련
                                 .requestMatchers("/html/account/login.html").permitAll()
+                                .requestMatchers("/html/account/privacy.html").permitAll()
+                                .requestMatchers("/html/account/join.html").permitAll()
                                 .requestMatchers("/privacy", "/agree", "/join").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/join").permitAll()
 
@@ -64,14 +66,14 @@ public class SecurityConfig {
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID")
                 )
-                .sessionManagement(session -> session
-                        .sessionFixation().migrateSession()
-                        .maximumSessions(1)
-                        .maxSessionsPreventsLogin(true)
-                        .expiredSessionStrategy(event -> {
-                            event.getResponse().sendRedirect("/loginView?error=session");
-                        })
-                )
+//                .sessionManagement(session -> session
+//                        .sessionFixation().migrateSession()
+//                        .maximumSessions(1)
+//                        .maxSessionsPreventsLogin(true)
+//                        .expiredSessionStrategy(event -> {
+//                            event.getResponse().sendRedirect("/loginView?error=session");
+//                        })
+//                )
                 .oauth2Login(
                         (oauth2) -> oauth2
                                 .loginPage("/html/account/login.html")

@@ -4,7 +4,7 @@ package com.oopsw.clario.service;
 import com.oopsw.clario.domain.member.Member;
 import com.oopsw.clario.domain.member.MemberRepository;
 import com.oopsw.clario.domain.member.Role;
-import com.oopsw.clario.dto.UpdateMemberDTO;
+import com.oopsw.clario.dto.member.UpdateMemberDTO;
 import com.oopsw.clario.exception.EmailAlreadyExistsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
