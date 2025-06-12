@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLARIO 대시보드</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/bar.css}"/>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}"/>
+    <link rel="stylesheet" th:href="@{/account-css/modal.css}" />
+<!--    <link rel="stylesheet" href="/css/dashboard.css" />-->
+<!--    <link rel="stylesheet" th:href="@{/css/style.css}" />-->
+    <script th:src="@{/js/dashboard.js}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div th:replace="~{headerside :: sidebar}"></div>
+<div th:replace="~{headerside :: allModals}"></div>
+<div th:replace="~{headerside :: header}"></div>
+<main class="main">
+    <div class="content">
+        <div class="dashboard">
+            <input type="hidden" id="memberId" th:value="${memberId}" />
+<!--            <button id="refreshBtn">🔄 새로고침</button>-->
+            <!-- 이번달 수입 카드 -->
+            <div class="income card income-card">
+                <div class="card-content">
+                    <div class="card-icon">💰</div>
+                    <h3>이번달 수입</h3>
+                    <h2 id="montylyIncome">0원</h2>
+                </div>
+            </div>
+
+            <!-- 이번달 소비 카드 -->
+            <div class="expense card expense-card">
+                <div class="card-content">
+                    <div class="card-icon">💳</div>
+                    <h3>이번달 소비</h3>
+                    <h2 id="montylyExpense">0원</h2>
+                </div>
+            </div>
+
+            <!-- 이번달 수입 대비 소비 차트 -->
+            <div class="ratio card ratio-card">
+                <div class="card-header">
+                    <h3>이번달 수입 대비 소비</h3>
+                    <div class="status-indicator" id="statusIndicator">
+                        <span class="status-icon" id="statusIcon">😊</span>
+                        <span class="status-text" id="statusText">건전한 소비</span>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="incomeSpendingChart"></canvas>
+<!--                    <div class="chart-info" id="chartInfo">-->
+<!--                        <div class="info-item">-->
+<!--                            <span class="label">수입</span>-->
+<!--                            <span class="value" id="incomeValue">0원</span>-->
+<!--                        </div>-->
+<!--                        <div class="info-item">-->
+<!--                            <span class="label">지출</span>-->
+<!--                            <span class="value" id="expenseValue">0원</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>소비율</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 오늘의 수입 및 소비 카드 -->
+            <div class="daily card daily-card">
+                <div class="card-header">
+                    <h3>오늘의 수입 및 소비 </h3>
+                </div>
+                <!-- 상세 내역 -->
+                <div class="daily-details">
+                    <div class="detail-section">
+                        <h4 class="detail-title">
+                            <span class="detail-icon">💰</span>
+                            수입 내역
+                        </h4>
+                        <div class="detail-list" id="income-column">
+                            <div class="no-data">수입 내역이 없습니다</div>
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h4 class="detail-title">
+                            <span class="detail-icon">💳</span>
+                            소비 내역
+                        </h4>
+                        <div class="detail-list" id="expense-column">
+                            <div class="no-data">소비 내역이 없습니다</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 자산 목표 -->
+            <div class="goal card">
+                <h3>자산목표 대비 총자산</h3>
+                <p id="no-goal-message" style="display: none;">🎯 목표자산을 설정해주세요!</p>
+                <div id="goal-chart-container" style="display: none;">
+                    <canvas id="goalChart" width="300" height="300"></canvas>
+                    <p id="goal-details"></p>
+                </div>
+                <button id="goal-button">자산목표 설정하기</button>
+            </div>
+
+            <!-- 자산 목표 설정 모달-->
+            <div class="modal-overlay" id="goal-modal">
+                <div class="modal-contents">
+                    <h3>자산 목표 설정</h3>
+                    <div class="row">
+                        <label for="goalInput">총자산</label>
+                        <h3 class="totalBalance">총자산 로딩</h3>
+                    </div>
+                    <div class="row">
+                        <label for="goalInput">자산목표</label>
+                        <div class="input-group">
+                            <input type="text" id="goalInput" name="goalInput" placeholder="목표금액을 입력해주세요." />
+                            <span>원</span>
+                        </div>
+                    </div>
+
+                    <div class="buttons-group">
+                        <button class="modal-buttons" id="close-modal">닫기</button>
+                        <button class="modal-buttons" id="save-goal-btn">확인</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카테고리 -->
+            <div class="category card">
+                <h3><span id="topCategoryMonth">--</span> 상위 카테고리</h3>
+                <canvas id="top3PieChart" width="250" height="250"></canvas>
+            </div>
+
+            <!-- 월별 수입 & 소비 추이 -->
+            <div class="graph card monthly-chart-card">
+                <div class="monthly-chart-header">
+                    <h3>
+                        <span class="chart-icon">📊</span>
+                        <span id="currentYear">----</span>년 월별 수입 & 소비 추이
+                    </h3>
+                </div>
+                <div class="monthly-chart-container">
+                    <canvas id="monthlyLineChart"></canvas>
+                </div>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <div class="legend-color income"></div>
+                        <span class="legend-text">월별 수입</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color expense"></div>
+                        <span class="legend-text">월별 소비</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script th:src="@{/js/modal.js}"></script>
+<script th:inline="javascript">
+    // 현재 날짜를 화면에 찍어주는 로직
+    const today = new Date();
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    const year    = today.getFullYear();
+    const month   = String(today.getMonth() + 1).padStart(2, '0');
+    const date    = String(today.getDate()).padStart(2, '0');
+    const weekday = days[today.getDay()];
+    const formatted = `${year}. ${month}. ${date}. (${weekday})`;
+
+    const el = document.getElementById('currentDate');
+    if (el) {
+        el.textContent = formatted;
+    }
+</script>
+</body>
+</html>

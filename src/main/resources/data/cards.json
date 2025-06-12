@@ -1,0 +1,38 @@
+{
+  "rsp_code": "A0000",
+  "rsp_msg": "성공",
+  "search_timestamp": "2025-06-01T10:00:00+09:00",
+  "card_cnt": 2,
+  "card_list": [
+    {
+      "card_id": "card-001",
+      "card_num_masked": "5522123456789012",
+      "card_type": "D",
+      "issuer_code": "031",
+      "issuer_name": "신한카드",
+      "card_name": "신한 Deep Dream 카드",
+      "annual_fee": "0",
+      "card_status": "01",
+      "linked_account": {
+        "account_num_masked": "110-445-892364",
+        "bank_code_std": "004",
+        "bank_name": "신한은행"
+      }
+    },
+    {
+      "card_id": "card-002",
+      "card_num_masked": "4624-6363-9090-6262",
+      "card_type": "C",
+      "issuer_code": "061",
+      "issuer_name": "국민카드",
+      "card_name": "KB국민 체크카드 라이프",
+      "annual_fee": "15000",
+      "card_status": "01",
+      "linked_account": {
+        "account_num_masked": "822-25-4981327",
+        "bank_code_std": "081",
+        "bank_name": "국민은행"
+      }
+    }
+  ]
+}

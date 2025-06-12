@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oopsw.clario.repository.card.CardRepository">
+    <select id="getAllCards"
+            parameterType="Long"
+            resultType="com.oopsw.clario.dto.card.AllCardsDTO">
+        SELECT card_recommendation_id AS cardRecommendationId, card_company AS cardCompany,
+               card_name AS cardName, card_type AS cardType, benefit_summary AS benefitSummary,
+               card_url AS cardUrl, card_image AS cardImage, benefit_category AS benefitCategory
+        FROM CardRecommendation
+    </select>
+
+    <select id="getCardsByCategoryNames" parameterType="list" resultType="com.oopsw.clario.dto.card.AllCardsDTO">
+        SELECT
+        card_recommendation_id AS cardRecommendationId,
+        card_company AS cardCompany,
+        card_name AS cardName,
+        card_type AS cardType,
+        benefit_summary AS benefitSummary,
+        card_url AS cardUrl,
+        card_image AS cardImage,
+        benefit_category AS benefitCategory
+        FROM
+        CardRecommendation
+        WHERE
+        benefit_category IN
+        <foreach item="category" collection="list" open="(" separator="," close=")">
+            #{category}
+        </foreach>
+    </select>
+
+    <select id="getCardsByCategoryNamesAndType"
+            resultType="com.oopsw.clario.dto.card.AllCardsDTO"
+            parameterType="map">
+        SELECT
+        card_recommendation_id AS cardRecommendationId,
+        card_company AS cardCompany,
+        card_name AS cardName,
+        card_type AS cardType,
+        benefit_summary AS benefitSummary,
+        card_url AS cardUrl,
+        card_image AS cardImage,
+        benefit_category AS benefitCategory
+        FROM
+        CardRecommendation
+        WHERE 1 = 1
+        <if test="categories != null and categories.size() > 0">
+            AND benefit_category IN
+            <foreach item="category" collection="categories" open="(" separator="," close=")">
+                #{category}
+            </foreach>
+        </if>
+        <if test="cardType != null and cardType != ''">
+            AND card_type = #{cardType}
+        </if>
+    </select>
+
+    <select id="getTopCategoriesByAmount"
+            parameterType="map"
+            resultType="com.oopsw.clario.dto.statistics.Top3CategoriesDTO">
+        SELECT
+            ct.category_id AS categoryId,
+            c.category_name AS categoryName,
+            SUM(ct.card_trade_money) AS usageAmount
+        FROM CardTrade ct
+                 JOIN MyCard mc ON ct.card_num = mc.card_num
+                 JOIN member m ON mc.member_id = m.member_id
+                 JOIN Category c ON ct.category_id = c.category_id
+        WHERE m.member_id = #{memberId}
+            AND YEAR(ct.card_trade_day) = #{year}
+          AND MONTH(ct.card_trade_day) = #{month}
+        GROUP BY ct.category_id, c.category_name
+        ORDER BY usageAmount DESC
+    </select>
+
+
+
+
+
+</mapper>

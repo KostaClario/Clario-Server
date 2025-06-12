@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oopsw.clario.repository.history.HistoryRepository">
+
+
+	<!--계좌 목록 조회 -->
+	<select id="accountList" parameterType="int" resultType="com.oopsw.clario.dto.history.AccountDTO">
+		SELECT bank_account_num AS bankAccountNum,
+			   bank_account_name AS bankAccountName
+		FROM MyBank
+		WHERE member_id = #{memberId}
+	</select>
+
+	<!--카드 목록 조회 -->
+	<select id="cardList" parameterType="int" resultType="com.oopsw.clario.dto.history.CardDTO">
+		SELECT card_num AS cardNum,
+			   card_name AS cardName
+		FROM MyCard
+		WHERE member_id = #{memberId}
+	</select>
+<!--입금 -->
+	<insert id="income" parameterType="com.oopsw.clario.dto.history.IncomeDTO">
+		INSERT INTO AccountTrade (
+			account_trade_day,
+			account_source,
+			account_trade_money,
+			account_trade_type,
+			bank_account_num
+			) VALUES (
+					 #{accountDay},
+					 #{source},
+					 #{accountMoney},
+					 #{accountType},
+					 #{bankAccountNum}
+				 )
+	</insert>
+
+	<!--결제-->
+	<insert id="expense" parameterType="com.oopsw.clario.dto.history.ExpenseDTO">
+		INSERT INTO CardTrade (
+		card_trade_day,
+		card_trade_money,
+		card_store_name,
+		business_num,
+		industry,
+		card_trade_type,
+		category_id,
+		card_num
+		) VALUES (
+		#{cardDay},
+		#{cardMoney},
+		#{cardStoreName},
+		#{businessNum},
+		#{industry},
+		#{cardType},
+		(SELECT category_id FROM Category WHERE category_name = #{categoryName}),
+		#{cardNum}
+		)
+	</insert>
+
+	<!--소비 내역 조회 -->
+	<select id="expenseHistory" parameterType="map" resultType="com.oopsw.clario.dto.history.ExpenseHistoryDTO">
+		SELECT ct.card_trade_day AS cardDay,
+		ct.card_store_name AS cardStoreName,
+		ct.card_trade_money AS cardMoney,
+		ct.business_num AS businessNum,
+		cg.category_name AS categoryName,
+		mc.card_name AS cardName,
+		ct.card_trade_id AS cardTradeId
+		FROM CardTrade ct
+		JOIN MyCard mc ON ct.card_num = mc.card_num
+		LEFT JOIN Category cg ON ct.category_id = cg.category_id
+		WHERE mc.member_id = #{memberId}
+		AND ct.card_trade_type = '결제'
+
+		<if test="date != null and date != ''">
+			AND ct.card_trade_day LIKE CONCAT(#{date}, '%')
+		</if>
+		<if test="category != null and category != ''">
+			AND cg.category_name = #{category}
+		</if>
+		<if test="card != null and card != ''">
+			AND mc.card_name = #{card}
+		</if>
+
+		ORDER BY ct.card_trade_day DESC
+	</select>
+
+<!-- 입금 내역 조회-->
+	<select id="incomeHistory" parameterType="map" resultType="com.oopsw.clario.dto.history.IncomeHistoryDTO">
+		SELECT at.account_trade_day AS accountDay,
+		mb.bank_name AS bankName,
+		at.account_source AS source,
+		at.account_trade_money AS accountMoney
+		FROM AccountTrade at
+		JOIN MyBank mb ON at.bank_account_num = mb.bank_account_num
+		WHERE mb.member_id = #{memberId}
+		<if test="date != null and date != ''">
+			AND at.account_trade_day LIKE CONCAT(#{date}, '%')
+		</if>
+		ORDER BY at.account_trade_day DESC
+	</select>
+
+	<!-- 카드 상세내역 -->
+	<select id="cardDetail" parameterType="int" resultType="com.oopsw.clario.dto.history.CardDetailDTO">
+	SELECT
+	mc.card_name AS cardName,
+	mc.card_type AS cardType,
+	mc.card_num AS cardNum,
+	ct.card_trade_day AS cardDay,
+	NULL AS cancel_day,
+	ct.card_trade_money AS cardMoney,
+	ct.card_store_name AS cardStoreName,
+	ct.industry AS industry,
+	cg.category_name AS categoryName,
+	ct.business_num AS businessNum,
+	ct.card_trade_id AS cardTradeId
+	FROM CardTrade ct
+	JOIN MyCard mc ON ct.card_num = mc.card_num
+	LEFT JOIN Category cg ON ct.category_id = cg.category_id
+	WHERE ct.card_trade_id = #{cardTradeId}
+	ORDER BY ct.card_trade_day DESC
+	</select>
+
+	<select id="categoryList" resultType="map">
+		SELECT category_id, category_name FROM Category
+	</select>
+
+</mapper>

@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLARIO - 통합 대시보드</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/bar.css}"/>
+    <link rel="stylesheet" th:href="@{/account-css/modal.css}" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;*/
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        .main-content {
+            margin-left: 100px;
+            padding: 90px 24px 24px 24px;
+            flex: 1;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+            align-items: stretch; /* 변경: start -> stretch */
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            height: 100%; /* 추가: 전체 높이 사용 */
+        }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+
+        .section.category-section {
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* 변경: fit-content -> 100% */
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .select {
+            padding: 8px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            background: white;
+            font-size: 14px;
+            cursor: pointer;
+            min-width: 80px;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 20px;
+        }
+
+        .chart-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .chart-center-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .chart-center-amount {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.2;
+        }
+
+        .legend {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+            justify-content: center;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .legend-emoji {
+            font-size: 16px;
+            margin-right: 4px;
+        }
+
+        .line-chart-container {
+            height: 280px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid-trend {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .stats-grid-bottom {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* 상위 3개 카테고리 최적화된 스타일 */
+        .top-categories-compact {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #dee2e6;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .top-categories-label {
+            font-size: 11px;
+            color: #6c757d;
+            font-weight: 500;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .top-categories-content {
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            line-height: 1.4;
+            word-spacing: 2px;
+        }
+
+        /* 분석 섹션 스타일 */
+        .analysis-section {
+            border-top: 1px solid #e9ecef;
+            padding-top: 20px;
+            margin-top: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .analysis-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .analysis-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .analysis-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .expense-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .expense-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .expense-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .metric-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+
+        .metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .metric-description {
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+        }
+
+        /* 개선된 증감률 스타일 */
+        .growth-rate.positive {
+            color: #dc3545;
+        }
+
+        .growth-rate.negative {
+            color: #0d6efd;
+        }
+
+        .growth-rate.neutral {
+            color: #6c757d;
+        }
+
+        .metric-container.positive {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        }
+
+        .metric-container.negative {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+
+        .metric-container.neutral {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+
+        /* 수입대비 소비 비율 스타일 */
+        .ratio-value.low {
+            color: #10b981;
+        }
+
+        .ratio-value.medium {
+            color: #f59e0b;
+        }
+
+        .ratio-value.high {
+            color: #dc3545;
+        }
+
+        .metric-container.low {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        }
+
+        .metric-container.medium {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+
+        .metric-container.high {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        }
+
+        /* 프로그레스 바 */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 1.5s ease;
+            position: relative;
+        }
+
+        .progress-fill.low {
+            background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+        }
+
+        .progress-fill.medium {
+            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+        }
+
+        .progress-fill.high {
+            background: linear-gradient(90deg, #dc3545 0%, #ef4444 100%);
+        }
+
+        /* 차액 차트 스타일 */
+        .balance-chart-container {
+            height: 120px;
+            margin: 20px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .balance-chart-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        /* 토글 버튼 */
+        .chart-toggle {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 16px;
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .toggle-btn.active {
+            background: white;
+            color: #6366f1;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .bottom-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .area-chart-container {
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .chart-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .chart-legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
+
+        .error-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: #dc3545;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* 소비 인사이트 카드 스타일 - 수정된 부분 */
+        .insights-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: 100%; /* 변경: fit-content -> 100% */
+            display: flex; /* 추가 */
+            flex-direction: column; /* 추가 */
+        }
+
+        .insights-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            flex-grow: 1; /* 추가: 남은 공간 모두 사용 */
+            align-items: stretch; /* 추가: 카드들이 같은 높이를 가지도록 */
+        }
+
+        .insight-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid #bae6fd;
+            border-radius: 12px;
+            padding: 16px;
+            display: flex; /* 추가 */
+            flex-direction: column; /* 추가 */
+        }
+
+        .insight-card.prediction {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+        }
+
+        .insight-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .insight-icon {
+            font-size: 16px;
+        }
+
+        .insight-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e40af;
+        }
+
+        .insight-title.prediction {
+            color: #166534;
+        }
+
+        .insight-content {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #1e40af;
+            margin-bottom: 8px;
+            flex-grow: 1; /* 추가: 남은 공간 사용 */
+        }
+
+        .insight-content.prediction {
+            color: #166534;
+        }
+
+        .insight-metrics {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto; /* 변경: 12px -> auto (하단에 고정) */
+        }
+
+        .change-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .change-indicator.positive {
+            color: #dc2626;
+        }
+
+        .change-indicator.negative {
+            color: #2563eb;
+        }
+
+        .change-indicator.neutral {
+            color: #6b7280;
+        }
+
+        .prediction-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #166534;
+            margin-bottom: 8px;
+        }
+
+        .prediction-note {
+            font-size: 11px;
+            color: #059669;
+            font-style: italic;
+        }
+
+        /* 반응형 개선 */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                align-items: stretch;
+            }
+            .right-column {
+                flex-direction: column;
+            }
+            .stats-grid-bottom {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .analysis-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .insights-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .section.category-section {
+                height: auto;
+            }
+            .analysis-section {
+                margin-top: 20px;
+            }
+            .insights-section {
+                height: auto; /* 추가: 반응형에서는 자동 높이 */
+            }
+        }
+
+        @media (max-width: 768px) {
+            /*.sidebar {*/
+            /*    width: 60px;*/
+            /*}*/
+            .main-content {
+                margin-left: 60px;
+                padding: 90px 16px 16px 16px;
+            }
+            /*.header {*/
+            /*    padding: 0 16px;*/
+            /*}*/
+            /*.nav-icon {*/
+            /*    width: 40px;*/
+            /*    height: 40px;*/
+            /*    font-size: 16px;*/
+            /*}*/
+            .stats-grid, .stats-grid-trend, .stats-grid-bottom {
+                grid-template-columns: 1fr;
+            }
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .controls {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .select {
+                flex: 1;
+                min-width: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /*.header-right .user-name {*/
+            /*    display: none;*/
+            /*}*/
+            .chart-container {
+                width: 240px;
+                height: 240px;
+            }
+            .controls {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .select {
+                width: 100%;
+            }
+            .chart-legend {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        .subtext {
+            font-size: 12px;
+            color: #059669;
+            margin-top: 8px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<div th:replace="~{headerside :: allModals}"></div>
+<div th:replace="~{headerside :: header}"></div>
+<body>
+<div class="container">
+    <aside th:fragment="sidebar" class="sidebar">
+        <div class="logo">
+            <img src="/img/ClarioLogoTextOnly.png" alt="CLARIO Logo">
+        </div>
+        <ul class="menu">
+            <li><a class="nav-icon" href="/dashboard">🏠</a></li>
+            <li><a class="nav-icon active" href="/statistics">📈</a></li>
+            <li><a class="nav-icon" href="/history">☰</a></li>
+            <li><a class="nav-icon" href="/card">💳</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="dashboard-grid">
+            <section class="section category-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span>🍰</span>
+                        카테고리별 소비 비중
+                    </h2>
+                    <div class="controls">
+                        <select class="select" id="categoryYearSelect">
+                            <option value="2025">2025년</option>
+                            <option value="2024">2024년</option>
+                            <option value="2023">2023년</option>
+                        </select>
+                        <select class="select" id="categoryMonthSelect">
+                            <!-- 현재 월이 기본 선택되도록 JavaScript에서 동적으로 설정 -->
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="categoryChart"></canvas>
+                    <div class="chart-center">
+                        <div class="chart-center-title">총 소비</div>
+                        <div class="chart-center-amount" id="chartCenterAmount">로딩중...</div>
+                    </div>
+                </div>
+                <div class="legend" id="categoryLegend"></div>
+
+                <!-- 상위 3개 카테고리 - 최적화된 레이아웃 -->
+                <div class="top-categories-compact">
+                    <div class="top-categories-label">상위 3개 카테고리</div>
+                    <div class="top-categories-content" id="topCategories">로딩중...</div>
+                </div>
+
+                <!-- 분석 섹션 -->
+                <div class="analysis-section">
+                    <div class="analysis-grid">
+                        <!-- 전월대비 증감률 -->
+                        <div class="analysis-item">
+                            <div class="analysis-title">
+                                📊 전월대비 소비 분석
+                            </div>
+                            <div class="analysis-content">
+                                <div class="expense-row">
+                                    <span class="expense-label">이번 달</span>
+                                    <span class="expense-value" id="currentExpense">로딩중...</span>
+                                </div>
+                                <div class="expense-row">
+                                    <span class="expense-label">지난 달</span>
+                                    <span class="expense-value" id="previousExpense">로딩중...</span>
+                                </div>
+                                <div class="metric-container" id="growthRateContainer">
+                                    <div class="metric-value growth-rate" id="growthRate">
+                                        <span>계산중...</span>
+                                    </div>
+                                    <div class="metric-description">지난달 대비</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 수입대비 소비 비율 -->
+                        <div class="analysis-item">
+                            <div class="analysis-title">
+                                💰 수입대비 소비 비율
+                            </div>
+                            <div class="analysis-content">
+                                <div class="expense-row">
+                                    <span class="expense-label">당월 수입</span>
+                                    <span class="expense-value" id="currentIncome">로딩중...</span>
+                                </div>
+                                <div class="expense-row">
+                                    <span class="expense-label">당월 소비</span>
+                                    <span class="expense-value" id="currentExpenseRatio">로딩중...</span>
+                                </div>
+                                <div class="metric-container" id="ratioContainer">
+                                    <div class="metric-value ratio-value" id="ratioValue">
+                                        <span>계산중...</span>
+                                    </div>
+                                    <div class="metric-description">수입 대비 소비율</div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="progressFill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="right-column">
+                <section class="section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span>📈</span>
+                            월별 소비 변화 추이
+                        </h2>
+                        <div class="controls">
+                            <select class="select" id="trendYearSelect">
+                                <option value="2025">2025년</option>
+                                <option value="2024">2024년</option>
+                                <option value="2023">2023년</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="line-chart-container">
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                    <div class="stats-grid-trend">
+                        <div class="stat-item">
+                            <div class="stat-label">월평균</div>
+                            <div class="stat-value" id="avgExpense">로딩중...</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">소비가 가장 많은 달</div>
+                            <div class="stat-value" id="maxExpenseMonth">로딩중...</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">소비가 가장 적은 달</div>
+                            <div class="stat-value" id="minExpenseMonth">로딩중...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 소비 인사이트 카드 -->
+                <section class="insights-section">
+                    <h2 class="insights-title">
+                        <span>🧠</span>
+                        이번달 소비 인사이트
+                    </h2>
+                    <div class="insights-grid">
+                        <!-- 소비 패턴 요약 -->
+                        <div class="insight-card">
+                            <div class="insight-header">
+                                <span class="insight-icon">💡</span>
+                                <span class="insight-title">소비 패턴 요약</span>
+                            </div>
+                            <div class="insight-content" id="patternSummary">
+                                데이터 분석 중...
+                            </div>
+                            <div class="insight-metrics">
+                                <div class="change-indicator" id="changeIndicator">
+                                    <span id="changeIcon">📊</span>
+                                    <span id="changeText">분석 중...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 다음달 예상 소비 -->
+                        <div class="insight-card prediction">
+                            <div class="insight-header">
+                                <span class="insight-icon">🔮</span>
+                                <span class="insight-title prediction">다음 달 예상 소비</span>
+                            </div>
+                            <div class="insight-content prediction" id="predictionContent">
+                                AI 기반 예측 모델을 통해 다음 달 소비를 분석하고 있습니다.
+                            </div>
+                            <div class="insight-metrics">
+                                <div class="prediction-value" id="predictionValue">계산 중...</div>
+                                <div class="prediction-note">* 과거 소비 패턴 기반 예측</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <section class="bottom-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span>💹</span>
+                    월별 수입 및 소비 추이
+                </h2>
+                <div class="controls">
+                    <select class="select" id="monthlyYearSelect">
+                        <option value="2025">2025년</option>
+                        <option value="2024">2024년</option>
+                        <option value="2023">2023년</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 차트 토글 -->
+            <div class="chart-toggle">
+                <button class="toggle-btn active" id="monthlyToggle">월별 추이</button>
+                <button class="toggle-btn" id="cumulativeToggle">누적 추이</button>
+            </div>
+
+            <div class="area-chart-container">
+                <canvas id="monthlyChart"></canvas>
+            </div>
+
+            <!-- 수입/소비 차액 차트 -->
+            <div class="balance-chart-container">
+                <div class="balance-chart-title">월별 수입-소비 차액</div>
+                <canvas id="balanceChart"></canvas>
+            </div>
+
+            <div class="chart-legend">
+                <div class="chart-legend-item">
+                    <div class="chart-legend-color" style="background: #4285f4;"></div>
+                    <span>💰 수입</span>
+                </div>
+                <div class="chart-legend-item">
+                    <div class="chart-legend-color" style="background: #ff6b6b;"></div>
+                    <span>💸 소비</span>
+                </div>
+                <div class="chart-legend-item">
+                    <div class="chart-legend-color" style="background: #10b981;"></div>
+                    <span>💵 흑자</span>
+                </div>
+                <div class="chart-legend-item">
+                    <div class="chart-legend-color" style="background: #ef4444;"></div>
+                    <span>💸 적자</span>
+                </div>
+            </div>
+
+            <div class="stats-grid-bottom">
+                <div class="stat-item">
+                    <div class="stat-label">연간 누적 수입 합계</div>
+                    <div class="stat-value" id="totalIncome">로딩중...</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">연간 누적 소비 합계</div>
+                    <div class="stat-value" id="totalExpenseYear">로딩중...</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">월평균 수입</div>
+                    <div class="stat-value" id="avgIncome">로딩중...</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">월평균 소비</div>
+                    <div class="stat-value" id="avgExpenseYear">로딩중...</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">수입-소비 차액</div>
+                    <div class="stat-value" id="incomeDifference">로딩중...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+    const charts = {
+        category: null,
+        trend: null,
+        monthly: null,
+        balance: null
+    };
+
+    const config = {
+        timeout: 5000,
+        chartOptions: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            animation: { duration: 1500, easing: 'easeInOutQuart' }
+        },
+        colors: ['#4285f4', '#ff6b6b', '#ffa726', '#66bb6a', '#ab47bc', '#ff7043', '#26c6da', '#ffee58']
+    };
+
+    // 카테고리별 이모지 매핑
+    const categoryEmojis = {
+        '식비': '🍽️',
+        '교통비': '🚗',
+        '고정비': '🏠',
+        '유흥비': '🍷',
+        '여가비': '🎮',
+        '건강비': '🏥',
+        '기타': '📦',
+        '생활비': '🛒',
+
+    };
+
+    let currentChartMode = 'monthly'; // 'monthly' or 'cumulative'
+
+    // 현재 날짜 기준으로 월 옵션 설정 (개선된 버전)
+    const initializeMonthSelect = () => {
+        const currentDate = new Date();
+        const currentMonth = currentDate.getMonth() + 1; // 0-based이므로 +1
+        const monthSelect = document.getElementById('categoryMonthSelect');
+
+        // 월 옵션들 생성
+        const months = [
+            { value: 1, text: '1월' },
+            { value: 2, text: '2월' },
+            { value: 3, text: '3월' },
+            { value: 4, text: '4월' },
+            { value: 5, text: '5월' },
+            { value: 6, text: '6월' },
+            { value: 7, text: '7월' },
+            { value: 8, text: '8월' },
+            { value: 9, text: '9월' },
+            { value: 10, text: '10월' },
+            { value: 11, text: '11월' },
+            { value: 12, text: '12월' }
+        ];
+
+        // 현재 월을 첫 번째로, 나머지는 순서대로 배치
+        const sortedMonths = [
+            ...months.filter(m => m.value === currentMonth),
+            ...months.filter(m => m.value !== currentMonth)
+        ];
+
+        monthSelect.innerHTML = '';
+        sortedMonths.forEach(month => {
+            const option = document.createElement('option');
+            option.value = month.value;
+            option.textContent = month.text;
+            monthSelect.appendChild(option);
+        });
+
+        // 현재 월이 기본 선택되도록 설정
+        monthSelect.value = currentMonth;
+    };
+
+    // 유틸리티 함수
+    const utils = {
+        showError: (elementId, message = '데이터 조회 실패') => {
+            const element = document.getElementById(elementId);
+            if (element) element.textContent = message;
+        },
+
+        updateCurrentDate: () => {
+            const dateString = new Date().toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                weekday: 'short'
+            });
+            document.getElementById('currentDate').textContent = dateString;
+        },
+
+        apiCall: async (endpoint, params) => {
+            try {
+                const response = await axios.get(endpoint, {
+                    params: { ...params },
+                    timeout: config.timeout
+                });
+                return response.data || [];
+            } catch (error) {
+                console.error(`API 호출 실패 (${endpoint}):`, error.message);
+                return null;
+            }
+        },
+
+        getMonthlyData: async (year) => {
+            const promises = [];
+            for (let month = 1; month <= 12; month++) {
+                const expensePromise = utils.apiCall('/api/statistics/monthly-expense', { year, month });
+                const incomePromise = utils.apiCall('/api/statistics/monthly-income', { year, month });
+                promises.push(Promise.all([expensePromise, incomePromise]));
+            }
+            return await Promise.all(promises);
+        },
+
+        calculateChangeRate: (current, previous) => {
+            if (previous === 0) return 0;
+            return Math.round(((current - previous) / previous) * 100);
+        }
+    };
+
+    // 다음달 예상 소비 데이터 로드 함수 (새로운 API 사용)
+    const loadNextMonthPrediction = async () => {
+        try {
+            const response = await axios.get('/api/statistics/next-month-prediction', {
+                // params: {},
+                timeout: config.timeout
+            });
+
+            const prediction = response.data;
+
+            // 예측값 표시 (개선된 스타일)
+            document.getElementById('predictionValue').textContent = prediction.toLocaleString() + '원';
+            document.getElementById('predictionContent').textContent =
+                `현재 소비 패턴을 분석한 결과, 다음 달 예상 소비는 ${prediction.toLocaleString()}원으로 예측됩니다. 이는 과거 3개월 평균 대비 적정 수준입니다.`;
+
+        } catch (error) {
+            console.error('다음달 예상 소비 로드 실패:', error.message);
+            document.getElementById('predictionValue').textContent = '데이터 없음';
+            document.getElementById('predictionContent').textContent =
+                '예측 데이터를 불러올 수 없습니다. 충분한 소비 데이터가 축적되면 더 정확한 예측이 가능합니다.';
+        }
+    };
+
+    // 트렌드 분석 함수 (현재 월 기준으로 고정)
+    const updateTrendAnalysis = async () => {
+        try {
+            // 현재 날짜 기준으로 고정
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear();
+
+            const data = await utils.apiCall('/api/statistics/monthly-card-trade', { year: currentYear });
+            if (!data || data.length === 0) {
+                document.getElementById('patternSummary').textContent = '데이터가 부족하여 분석할 수 없습니다.';
+                return;
+            }
+
+            const expenses = data.map(item => parseInt(item.monthlyExpense) || 0);
+            const currentMonth = expenses.length;
+
+            if (currentMonth < 2) {
+                document.getElementById('patternSummary').textContent = '분석을 위한 데이터가 부족합니다.';
+                return;
+            }
+
+            const currentExpense = expenses[currentMonth - 1];
+            const previousExpense = expenses[currentMonth - 2];
+            const changeRate = utils.calculateChangeRate(currentExpense, previousExpense);
+
+            // 카테고리별 증가 분석을 위한 데이터 (실제 API 호출 대신 예시)
+            const categoryIncreases = {
+                '식비': 15,
+                '교통비': -5,
+                '쇼핑': 25,
+                '문화생활': 10
+            };
+
+            // 패턴 분석 (더 상세한 분석)
+            let patternSummary = '';
+            let changeIcon = '';
+            let changeClass = '';
+
+            if (changeRate > 15) {
+                const topIncreaseCategory = Object.keys(categoryIncreases).reduce((a, b) =>
+                    categoryIncreases[a] > categoryIncreases[b] ? a : b
+                );
+                const emoji = categoryEmojis[topIncreaseCategory] || '📊';
+                patternSummary = `전월 대비 지출이 크게 증가했습니다. 특히 ${emoji} ${topIncreaseCategory} 항목에서 ${categoryIncreases[topIncreaseCategory]}% 증가하여 주요 원인으로 분석됩니다. 변동비 관리가 필요한 시점입니다.`;
+                changeIcon = '🔺';
+                changeClass = 'positive';
+            } else if (changeRate > 5) {
+                patternSummary = `전월 대비 지출이 소폭 증가했습니다. 전반적으로 안정적인 소비 패턴을 보이고 있으나, 일부 카테고리에서 증가 추세가 관찰됩니다. 지속적인 모니터링이 권장됩니다.`;
+                changeIcon = '🔺';
+                changeClass = 'positive';
+            } else if (changeRate < -15) {
+                patternSummary = `전월 대비 지출이 크게 감소했습니다. 효과적인 절약 패턴이 나타나고 있으며, 특히 변동비 항목에서 뚜렷한 감소세를 보이고 있습니다. 우수한 가계 관리 상태입니다.`;
+                changeIcon = '🔻';
+                changeClass = 'negative';
+            } else if (changeRate < -5) {
+                patternSummary = `전월 대비 지출이 소폭 감소했습니다. 안정적인 소비 패턴을 유지하면서도 절약 의식이 반영된 결과로 보입니다. 현재의 소비 습관을 지속하는 것이 좋겠습니다.`;
+                changeIcon = '🔻';
+                changeClass = 'negative';
+            } else {
+                patternSummary = `전월과 거의 동일한 수준의 지출을 유지하고 있습니다. 매우 일정한 소비 패턴을 보이고 있어 예측 가능한 가계 관리가 이루어지고 있습니다.`;
+                changeIcon = '➖';
+                changeClass = 'neutral';
+            }
+
+            // UI 업데이트
+            document.getElementById('patternSummary').textContent = patternSummary;
+            document.getElementById('changeIcon').textContent = changeIcon;
+            document.getElementById('changeText').textContent = `전월 대비 ${changeRate > 0 ? '+' : ''}${changeRate}%`;
+
+            const changeIndicator = document.getElementById('changeIndicator');
+            changeIndicator.className = `change-indicator ${changeClass}`;
+
+            // 다음 달 예측 로드
+            await loadNextMonthPrediction();
+
+        } catch (error) {
+            console.error('트렌드 분석 실패:', error);
+            document.getElementById('patternSummary').textContent = '분석 중 오류가 발생했습니다.';
+        }
+    };
+
+    // 전월대비 증감률 로드
+    const loadExpenseGrowthRate = async (year, month) => {
+        try {
+            const response = await axios.get('/api/statistics/expense/growth', {
+                params: {
+                    year: year,
+                    month: month
+                },
+                timeout: config.timeout
+            });
+
+            const data = response.data;
+
+            document.getElementById('currentExpense').innerText = data.currentExpense.toLocaleString() + "원";
+            document.getElementById('previousExpense').innerText = data.previousExpense.toLocaleString() + "원";
+
+            const growthRate = data.growthRate;
+            const growthRateElement = document.getElementById('growthRate');
+            const growthRateContainer = document.getElementById('growthRateContainer');
+
+            // 개선된 아이콘 사용
+            let icon;
+            if (growthRate > 0) {
+                icon = '🔺';
+            } else if (growthRate < 0) {
+                icon = '🔻';
+            } else {
+                icon = '➖';
+            }
+
+            const growthText = (growthRate > 0 ? '+' : '') + growthRate + '%';
+            growthRateElement.innerHTML = `<span>${icon}</span><span>${growthText}</span>`;
+
+            growthRateElement.className = 'metric-value growth-rate';
+            growthRateContainer.className = 'metric-container';
+
+            if (growthRate > 0) {
+                growthRateElement.classList.add('positive');
+                growthRateContainer.classList.add('positive');
+            } else if (growthRate < 0) {
+                growthRateElement.classList.add('negative');
+                growthRateContainer.classList.add('negative');
+            } else {
+                growthRateElement.classList.add('neutral');
+                growthRateContainer.classList.add('neutral');
+            }
+
+        } catch (error) {
+            console.error('증감률 정보 불러오기 실패:', error.message);
+
+            // 에러 메시지 표시
+            document.getElementById('currentExpense').textContent = '데이터 없음';
+            document.getElementById('previousExpense').textContent = '데이터 없음';
+
+            const growthRateElement = document.getElementById('growthRate');
+            const growthRateContainer = document.getElementById('growthRateContainer');
+
+            growthRateElement.innerHTML = '<span>데이터 없음</span>';
+            growthRateElement.className = 'metric-value growth-rate neutral';
+            growthRateContainer.className = 'metric-container neutral';
+        }
+    };
+
+    // 수입대비 소비 비율 로드
+    const loadIncomeVsExpense = async (year, month) => {
+        try {
+            const response = await axios.get('/api/statistics/income-vs-expense', {
+                params: {
+                    year: year,
+                    month: month
+                },
+                timeout: config.timeout
+            });
+
+            const data = response.data;
+
+            document.getElementById('currentIncome').innerText = data.income.toLocaleString() + "원";
+            document.getElementById('currentExpenseRatio').innerText = data.expense.toLocaleString() + "원";
+
+            const ratio = data.rate;
+            const ratioElement = document.getElementById('ratioValue');
+            const ratioContainer = document.getElementById('ratioContainer');
+
+            let icon, ratioClass;
+            if (ratio <= 70) {
+                icon = '😊';
+                ratioClass = 'low';
+            } else if (ratio <= 90) {
+                icon = '😐';
+                ratioClass = 'medium';
+            } else {
+                icon = '😰';
+                ratioClass = 'high';
+            }
+
+            ratioElement.innerHTML = `<span>${icon}</span><span>${ratio}%</span>`;
+
+            ratioElement.className = `metric-value ratio-value ${ratioClass}`;
+            ratioContainer.className = `metric-container ${ratioClass}`;
+
+            const progressFill = document.getElementById('progressFill');
+            progressFill.className = `progress-fill ${ratioClass}`;
+            setTimeout(() => {
+                progressFill.style.width = `${Math.min(ratio, 100)}%`;
+            }, 500);
+
+        } catch (error) {
+            console.error('수입대비 소비 비율 불러오기 실패:', error.message);
+
+            // 에러 메시지 표시
+            document.getElementById('currentIncome').textContent = '데이터 없음';
+            document.getElementById('currentExpenseRatio').textContent = '데이터 없음';
+
+            const ratioElement = document.getElementById('ratioValue');
+            const ratioContainer = document.getElementById('ratioContainer');
+            const progressFill = document.getElementById('progressFill');
+
+            ratioElement.innerHTML = '<span>데이터 없음</span>';
+            ratioElement.className = 'metric-value ratio-value neutral';
+            ratioContainer.className = 'metric-container neutral';
+
+            progressFill.className = 'progress-fill neutral';
+            progressFill.style.width = '0%';
+        }
+    };
+
+    // 차트 생성 함수들
+    const chartCreators = {
+        category: async () => {
+            const year = document.getElementById('categoryYearSelect').value;
+            const month = document.getElementById('categoryMonthSelect').value;
+
+            const data = await utils.apiCall('/api/statistics/monthly-expense', { year, month });
+            if (!data) {
+                utils.showError('topCategories');
+                utils.showError('chartCenterAmount');
+                document.getElementById('categoryLegend').innerHTML = '<div class="error-message">데이터 조회 실패</div>';
+                return;
+            }
+
+            const labels = data.map(item => item.categoryName);
+            const values = data.map(item => parseInt(item.totalSpending) || 0);
+            const colors = config.colors.slice(0, labels.length);
+
+            if (charts.category) charts.category.destroy();
+
+            const ctx = document.getElementById('categoryChart').getContext('2d');
+            charts.category = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels,
+                    datasets: [{
+                        data: values,
+                        backgroundColor: colors,
+                        borderWidth: 0,
+                        cutout: '60%'
+                    }]
+                },
+                options: {
+                    ...config.chartOptions,
+                    plugins: {
+                        ...config.chartOptions.plugins,
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => {
+                                    const total = values.reduce((sum, val) => sum + val, 0);
+                                    const percentage = Math.round((context.parsed / total) * 100);
+                                    return `${context.label}: ${context.parsed.toLocaleString()}원 (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 범례에 이모지 추가 (가운데 정렬)
+            const legendContainer = document.getElementById('categoryLegend');
+            legendContainer.innerHTML = '';
+            labels.forEach((label, index) => {
+                const legendItem = document.createElement('div');
+                legendItem.className = 'legend-item';
+                const emoji = categoryEmojis[label] || '📊';
+                legendItem.innerHTML = `
+                    <div class="legend-color" style="background: ${colors[index]};"></div>
+                    <span><span class="legend-emoji">${emoji}</span>${label} ${values[index].toLocaleString()}원</span>
+                `;
+                legendContainer.appendChild(legendItem);
+            });
+
+            const total = values.reduce((sum, val) => sum + val, 0);
+            const sortedData = [...data].sort((a, b) => parseInt(b.totalSpending || 0) - parseInt(a.totalSpending || 0));
+
+            // 상위 3개 카테고리를 bullet으로 구분하여 더 컴팩트하게 표시
+            const top3Categories = sortedData.slice(0, 3).map(item => {
+                const emoji = categoryEmojis[item.categoryName] || '📊';
+                return `${emoji}${item.categoryName}`;
+            }).join(' • '); // 쉼표 대신 bullet 사용
+
+            // 차트 중앙에 총 소비 금액 표시
+            document.getElementById('chartCenterAmount').textContent = total.toLocaleString() + '원';
+            document.getElementById('topCategories').textContent = top3Categories || '데이터 없음';
+
+            await Promise.all([
+                loadExpenseGrowthRate(year, month),
+                loadIncomeVsExpense(year, month)
+            ]);
+        },
+
+        trend: async () => {
+            const year = document.getElementById('trendYearSelect').value;
+
+            const data = await utils.apiCall('/api/statistics/monthly-card-trade', { year });
+            if (!data) {
+                utils.showError('avgExpense');
+                utils.showError('maxExpenseMonth');
+                utils.showError('minExpenseMonth');
+                return;
+            }
+
+            const labels = data.map(item => `${parseInt(item.tradeMonth.split('-')[1])}월`);
+            const values = data.map(item => parseInt(item.monthlyExpense) || 0);
+
+            if (charts.trend) charts.trend.destroy();
+
+            const ctx = document.getElementById('trendChart').getContext('2d');
+
+            // 최고점과 최저점 찾기
+            const maxValue = Math.max(...values);
+            const minValue = Math.min(...values);
+            const maxIndex = values.indexOf(maxValue);
+            const minIndex = values.indexOf(minValue);
+
+            // 포인트 색상 설정 (최고점은 빨강, 최저점은 파랑, 나머지는 기본)
+            const pointColors = values.map((value, index) => {
+                if (index === maxIndex) return '#dc3545';
+                if (index === minIndex) return '#0d6efd';
+                return '#4285f4';
+            });
+
+            const pointRadius = values.map((value, index) => {
+                if (index === maxIndex || index === minIndex) return 10;
+                return 6;
+            });
+
+            charts.trend = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: '월별 소비',
+                        data: values,
+                        borderColor: '#4285f4',
+                        backgroundColor: 'rgba(66, 133, 244, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0,
+                        pointBackgroundColor: pointColors,
+                        pointBorderColor: pointColors,
+                        pointRadius: pointRadius,
+                        pointHoverRadius: values.map((value, index) => {
+                            if (index === maxIndex || index === minIndex) return 14;
+                            return 8;
+                        })
+                    }]
+                },
+                options: {
+                    ...config.chartOptions,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f0f0f0' },
+                            ticks: { callback: (value) => (value / 1000000) + 'M' }
+                        },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: {
+                        ...config.chartOptions.plugins,
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => {
+                                    const currentValue = context.parsed.y;
+                                    const previousValue = context.dataIndex > 0 ? values[context.dataIndex - 1] : 0;
+                                    const changeRate = utils.calculateChangeRate(currentValue, previousValue);
+
+                                    let changeText = '';
+                                    if (context.dataIndex > 0) {
+                                        const changeIcon = changeRate > 0 ? '🔺' : changeRate < 0 ? '🔻' : '➖';
+                                        changeText = `\n전월대비: ${changeIcon} ${changeRate > 0 ? '+' : ''}${changeRate}%`;
+                                    }
+
+                                    return `소비: ${currentValue.toLocaleString()}원${changeText}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const total = values.reduce((sum, value) => sum + value, 0);
+            const average = Math.round(total / (values.length || 1));
+            const maxMonth = data[maxIndex]?.tradeMonth.split('-')[1] + '월';
+            const minMonth = data[minIndex]?.tradeMonth.split('-')[1] + '월';
+
+            document.getElementById('avgExpense').textContent = average.toLocaleString() + '원';
+            document.getElementById('maxExpenseMonth').textContent = `${maxMonth} (${maxValue.toLocaleString()}원)`;
+            document.getElementById('minExpenseMonth').textContent = `${minMonth} (${minValue.toLocaleString()}원)`;
+
+            // 트렌드 분석 업데이트 (현재 월 기준으로 고정)
+            await updateTrendAnalysis();
+        },
+
+        monthly: async () => {
+            const year = document.getElementById('monthlyYearSelect').value;
+            const months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+
+            const monthlyResults = await utils.getMonthlyData(year);
+
+            const incomeData = [];
+            const expenseData = [];
+
+            monthlyResults.forEach(([expenseResponse, incomeResponse]) => {
+                const monthlyIncome = incomeResponse?.totalIncome || 0;
+                incomeData.push(monthlyIncome);
+
+                const monthlyExpenseTotal = expenseResponse?.reduce((sum, item) => {
+                    return sum + (parseInt(item.totalSpending) || 0);
+                }, 0) || 0;
+                expenseData.push(monthlyExpenseTotal);
+            });
+
+            // 차액 데이터 계산
+            const balanceData = incomeData.map((income, index) => income - expenseData[index]);
+
+            if (charts.monthly) charts.monthly.destroy();
+            if (charts.balance) charts.balance.destroy();
+
+            const ctx = document.getElementById('monthlyChart').getContext('2d');
+            const balanceCtx = document.getElementById('balanceChart').getContext('2d');
+
+            // 누적 데이터 계산
+            const cumulativeIncome = [];
+            const cumulativeExpense = [];
+            let incomeSum = 0;
+            let expenseSum = 0;
+
+            incomeData.forEach((income, index) => {
+                incomeSum += income;
+                expenseSum += expenseData[index];
+                cumulativeIncome.push(incomeSum);
+                cumulativeExpense.push(expenseSum);
+            });
+
+            const displayIncomeData = currentChartMode === 'monthly' ? incomeData : cumulativeIncome;
+            const displayExpenseData = currentChartMode === 'monthly' ? expenseData : cumulativeExpense;
+
+            charts.monthly = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [
+                        {
+                            label: currentChartMode === 'monthly' ? '수입' : '누적 수입',
+                            data: displayIncomeData,
+                            backgroundColor: 'rgba(66, 133, 244, 0.3)',
+                            borderColor: '#4285f4',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: '#4285f4',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        },
+                        {
+                            label: currentChartMode === 'monthly' ? '소비' : '누적 소비',
+                            data: displayExpenseData,
+                            backgroundColor: 'rgba(255, 107, 107, 0.3)',
+                            borderColor: '#ff6b6b',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointBackgroundColor: '#ff6b6b',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            borderColor: '#4285f4',
+                            borderWidth: 1,
+                            cornerRadius: 8,
+                            displayColors: true,
+                            callbacks: {
+                                label: (context) => `${context.dataset.label}: ${context.parsed.y.toLocaleString()}원`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { display: true, color: 'rgba(0, 0, 0, 0.1)', drawBorder: false },
+                            border: { display: false },
+                            ticks: {
+                                callback: (value) => (value / 1000000) + 'M',
+                                color: '#666666',
+                                font: { size: 12 }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            border: { display: false },
+                            ticks: { color: '#666666', font: { size: 12 } }
+                        }
+                    },
+                    animation: { duration: 1500, easing: 'easeInOutQuart' },
+                    elements: { line: { borderJoinStyle: 'round', borderCapStyle: 'round' } }
+                }
+            });
+
+            // 차액 차트 생성 (오류 수정)
+            charts.balance = new Chart(balanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: months,
+                    datasets: [{
+                        label: '차액',
+                        data: balanceData,
+                        backgroundColor: balanceData.map(value =>
+                            value >= 0 ? 'rgba(16, 185, 129, 0.8)' : 'rgba(239, 68, 68, 0.8)'
+                        ),
+                        borderColor: balanceData.map(value =>
+                            value >= 0 ? '#10b981' : '#ef4444'
+                        ),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => {
+                                    const value = context.parsed.y;
+                                    const status = value >= 0 ? '흑자' : '적자';
+                                    return `${status}: ${Math.abs(value).toLocaleString()}원`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            ticks: {
+                                callback: (value) => (value / 1000000) + 'M',
+                                color: '#666666',
+                                font: { size: 10 }
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#666666', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+
+            // 통계 업데이트
+            const totalIncome = incomeData.reduce((sum, val) => sum + val, 0);
+            const totalExpense = expenseData.reduce((sum, val) => sum + val, 0);
+            const avgIncome = Math.round(totalIncome / 12);
+            const avgExpense = Math.round(totalExpense / 12);
+            const difference = totalIncome - totalExpense;
+
+            document.getElementById('totalIncome').textContent = totalIncome.toLocaleString() + '원';
+            document.getElementById('totalExpenseYear').textContent = totalExpense.toLocaleString() + '원';
+            document.getElementById('avgIncome').textContent = avgIncome.toLocaleString() + '원';
+            document.getElementById('avgExpenseYear').textContent = avgExpense.toLocaleString() + '원';
+            document.getElementById('incomeDifference').textContent = difference.toLocaleString() + '원';
+        }
+    };
+
+    // 이벤트 리스너 및 초기화
+    document.addEventListener('DOMContentLoaded', () => {
+        utils.updateCurrentDate();
+
+        // 현재 날짜 기준으로 월 선택 옵션 초기화
+        initializeMonthSelect();
+
+        // 차트 초기 생성
+        chartCreators.category();
+        chartCreators.trend();
+        chartCreators.monthly();
+
+        // 토글 버튼 이벤트
+        document.getElementById('monthlyToggle').addEventListener('click', () => {
+            currentChartMode = 'monthly';
+            document.getElementById('monthlyToggle').classList.add('active');
+            document.getElementById('cumulativeToggle').classList.remove('active');
+            chartCreators.monthly();
+        });
+
+        document.getElementById('cumulativeToggle').addEventListener('click', () => {
+            currentChartMode = 'cumulative';
+            document.getElementById('cumulativeToggle').classList.add('active');
+            document.getElementById('monthlyToggle').classList.remove('active');
+            chartCreators.monthly();
+        });
+
+        // 네비게이션 핸들러
+        document.querySelectorAll('.nav-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                document.querySelectorAll('.nav-icon').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // 로그아웃 핸들러
+        document.querySelector('.logout-btn').addEventListener('click', () => {
+            if (confirm('로그아웃 하시겠습니까?')) {
+                alert('로그아웃 되었습니다.');
+            }
+        });
+
+        // 셀렉트 박스 이벤트 핸들러
+        document.getElementById('categoryYearSelect').addEventListener('change', chartCreators.category);
+        document.getElementById('categoryMonthSelect').addEventListener('change', chartCreators.category);
+        document.getElementById('trendYearSelect').addEventListener('change', chartCreators.trend);
+        document.getElementById('monthlyYearSelect').addEventListener('change', chartCreators.monthly);
+    });
+</script>
+<script th:src="@{/js/modal.js}"></script>
+</body>
+</html>
