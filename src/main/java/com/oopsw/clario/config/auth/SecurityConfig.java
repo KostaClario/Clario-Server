@@ -38,7 +38,7 @@ public class SecurityConfig {
                                 .requestMatchers("/", "/css/**", "/js/**", "/img/**", "/account-css/**").permitAll()
 
                                 // 로그인 및 회원가입 관련
-                                .requestMatchers("/loginView").permitAll()
+                                .requestMatchers("/html/account/login.html").permitAll()
                                 .requestMatchers("/privacy", "/agree", "/join").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/join").permitAll()
 
@@ -60,7 +60,7 @@ public class SecurityConfig {
                 .logout(
                         (logoutConfig) -> logoutConfig
                                 .logoutUrl("/logout")
-                                .logoutSuccessUrl("/loginView")
+                                .logoutSuccessUrl("/html/account/login.html")
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID")
                 )
@@ -74,7 +74,7 @@ public class SecurityConfig {
                 )
                 .oauth2Login(
                         (oauth2) -> oauth2
-                                .loginPage("/loginView")
+                                .loginPage("/html/account/login.html")
                                 .failureHandler(customOAuth2FailureHandler)
                                 .userInfoEndpoint(
                                         (userInfo) -> userInfo
