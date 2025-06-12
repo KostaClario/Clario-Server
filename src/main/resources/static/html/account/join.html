@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>회원가입 - CLARIO</title>
 
     <!-- 아이콘 & 구글 폰트 -->
@@ -10,27 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet"/>
 
     <!-- 공통 CSS -->
-    <link rel="stylesheet" th:href="@{/account-css/style.css}" />
+    <link rel="stylesheet" href="/account-css/style.css" />
 </head>
 <body>
 <main class="consent-container">
     <!-- 왼쪽 브랜드 영역 -->
     <div class="left">
-        <img th:src="@{/img/ClarioLogo.png}" alt="CLARIO Logo">
+        <img src="/img/ClarioLogo.png" alt="CLARIO Logo">
     </div>
 
     <!-- 오른쪽 폼 영역 -->
     <div class="right2">
         <section class="content">
             <h2 style="text-align:center; margin-bottom:24px;">개인정보 입력</h2>
-            <form class="form-edit" th:action="@{/join}" method="post">
-                <div th:if="${errorMessage}" style="color:red;">
-                    <p th:text="${errorMessage}"></p>
-                </div>
+            <form id="joinForm" class="form-edit">
+                <!-- 오류 메시지 -->
+                <div id="errorMessage" style="color:red;"></div>
 
                 <!-- 이름 -->
                 <div class="form-field">
-                    <input type="text" name="name" placeholder="이름" required/>
+                    <input type="text" name="name" placeholder="이름" required />
                 </div>
 
                 <!-- 전화번호 -->
@@ -51,22 +50,35 @@
                            placeholder="비밀번호 확인" required />
                 </div>
 
-                <div th:if="${error}" th:text="${error}" style="color: red"></div>
-
                 <!-- 버튼 그룹 -->
                 <div class="btn-group" style="margin-top:32px;">
-                    <button type="button" class="btn btn-cancel" th:onclick="|location.href='@{/loginView}'|">다음에</button>
+                    <button type="button" class="btn btn-cancel" onclick="goToLogin()">다음에</button>
                     <button type="submit" class="btn btn-quit">확인</button>
                 </div>
             </form>
         </section>
     </div>
 </main>
-<script>
-    const phoneInput = document.querySelector('input[name="phonenum"]');
 
+<!-- Axios CDN -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    axios.defaults.baseURL = 'http://127.0.0.1:8883';
+    function goToLogin() {
+        axios.get('/api/member/loginView')
+            .then(res => {
+                // 서버에서 'account/login' 문자열을 받아서 해당 경로로 리디렉트
+                window.location.href = '/' + res.data;
+            })
+            .catch(err => {
+                alert("로그인 페이지로 이동할 수 없습니다.");
+            });
+    }
+    // 휴대폰 번호 포맷팅
+    const phoneInput = document.querySelector('input[name="phonenum"]');
     phoneInput.addEventListener('input', function (e) {
-        let numbers = e.target.value.replace(/\D/g, ''); // 숫자만 남김
+        let numbers = e.target.value.replace(/\D/g, '');
         let formatted = '';
 
         if (numbers.length < 4) {
@@ -78,6 +90,31 @@
         }
 
         e.target.value = formatted;
+    });
+
+    // Axios로 회원가입 전송
+    document.getElementById('joinForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const data = {
+            name: form.name.value.trim(),
+            phonenum: form.phonenum.value.replace(/-/g, '').trim(),
+            password: form.password.value,
+            confirmPassword: form.confirmPassword.value
+        };
+
+        axios.post('/api/member/join', data)
+            .then(res => {
+                alert('회원가입이 완료되었습니다.');
+                window.location.href = '/mydata/mybankandcardlist';
+            })
+            .catch(err => {
+                const errorMessage = err.response && err.response.data
+                    ? err.response.data
+                    : '회원가입에 실패했습니다. 다시 시도해주세요.';
+                document.getElementById('errorMessage').innerText = errorMessage;
+            });
     });
 </script>
 

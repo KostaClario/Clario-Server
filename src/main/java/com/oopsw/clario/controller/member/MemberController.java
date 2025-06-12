@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@Controller
+//@Controller
 @Slf4j
 public class MemberController {
 
