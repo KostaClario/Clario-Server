@@ -1,0 +1,26 @@
+{
+  "rsp_code": "A0000",
+  "rsp_msg": "성공",
+  "search_timestamp": "2025-06-01T12:00:00+09:00",
+  "account_cnt": 2,
+  "account_list": [
+    {
+      "fintech_use_num": "123456789012345678901234",
+      "account_num_masked": "110-445-892364",
+      "account_type": "01",
+      "account_status": "01",
+      "bank_code_std": "004",
+      "bank_name": "신한은행",
+      "account_name": "신한 주거래통장"
+    },
+    {
+      "fintech_use_num": "987654321098765432109876",
+      "account_num_masked": "822-25-4981327",
+      "account_type": "02",
+      "account_status": "01",
+      "bank_code_std": "081",
+      "bank_name": "국민은행",
+      "account_name": "국민급여우대통장"
+    }
+  ]
+}

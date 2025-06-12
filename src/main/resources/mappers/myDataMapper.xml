@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oopsw.clario.repository.MyDataRepository">
+    <select id="getMyBankConnection" parameterType="int" resultType="com.oopsw.clario.dto.MyBankDTO">
+        SELECT DISTINCT TRIM(bank_name) AS bankName
+        FROM MyBank
+        WHERE member_id = #{memberId}
+
+    </select>
+    <select id="getMyCardConnection" parameterType="int" resultType="com.oopsw.clario.dto.MyCardDTO">
+        SELECT DISTINCT card_company AS cardCompany
+        FROM MyCard
+        WHERE member_id = #{memberId}
+    </select>
+    <select id="getMyBankList" parameterType="int" resultType="com.oopsw.clario.dto.MyBankDTO">
+        SELECT bank_account_name AS bankAccountName,
+               bank_name AS bankName,
+               bank_account_num AS bankAccountNum,
+               balance
+        FROM MyBank
+        WHERE member_id = #{memberId}
+    </select>
+    <select id="getMyCardList" parameterType="int" resultType="com.oopsw.clario.dto.MyCardDTO">
+        SELECT card_num AS cardNum,
+               card_name AS cardName,
+               card_company AS cardCompany,
+               card_bank AS cardBank,
+               c_bank_account AS cardBankAccount
+        FROM MyCard
+        WHERE member_id = #{memberId}
+    </select>
+
+</mapper>

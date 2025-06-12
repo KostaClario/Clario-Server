@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oopsw.clario.repository.DashboardRepository">
+    <select id="getMonthlyIncome" parameterType="com.oopsw.clario.dto.dashboard.MemberDateDTO" resultType="Long">
+        SELECT COALESCE(SUM(account_trade_money), 0) as montylyIncome
+        FROM AccountTrade WHERE bank_account_num IN(SELECT bank_account_num FROM member m JOIN MyBank b ON m.member_id = b.member_id WHERE m.member_id = #{memberId})
+            AND account_trade_type = '입금' AND YEAR(account_trade_day) = #{yearDate}
+                            AND MONTH(account_trade_day) = #{monthDate}
+    </select>
+
+    <select id="getMonthlyExpense" parameterType="com.oopsw.clario.dto.dashboard.MemberDateDTO" resultType="Long">
+        SELECT COALESCE(SUM(card_trade_money), 0) as montylyExpense
+        FROM CardTrade WHERE card_num IN(SELECT card_num FROM member m JOIN MyCard c ON m.member_id = c.member_id WHERE m.member_id = #{memberId})
+            AND card_trade_type IN ('결제', '승인')  AND YEAR(card_trade_day) = #{yearDate}
+                         AND MONTH(card_trade_day) = #{monthDate}
+    </select>
+
+    <select id="getTargetAssets" parameterType="int" resultType="Long">
+        SELECT target_assets FROM member WHERE member_id=#{memberId}
+    </select>
+
+    <select id="getTotalAssets" parameterType="int" resultType="Long">
+        SELECT total_assets FROM member WHERE member_id=#{memberId}
+    </select>
+
+    <update id="addTargetAssets" parameterType="java.util.HashMap">
+        UPDATE member SET target_assets = #{targetAssets} WHERE member_id = #{memberId}
+    </update>
+
+    <select id="getTodayExpense" parameterType="com.oopsw.clario.dto.dashboard.MemberDateDTO" resultType="com.oopsw.clario.dto.dashboard.TradeDTO">
+        SELECT ct.card_store_name as cardStoreName , ct.card_trade_money as cardTradeMoney
+        FROM CardTrade ct,member m
+        WHERE m.member_id = #{memberId} AND ct.card_trade_day=#{todayDate}
+        AND ct.card_trade_type IN ('결제', '승인')
+        ORDER BY ct.card_trade_money DESC
+            LIMIT 3;
+    </select>
+
+    <select id="getTodayIncome" parameterType="com.oopsw.clario.dto.dashboard.MemberDateDTO" resultType="com.oopsw.clario.dto.dashboard.TradeDTO">
+        SELECT ac.account_source as accountSource, ac.account_trade_money as accountTradeMoney
+        FROM AccountTrade ac ,member m
+        WHERE m.member_id = #{memberId} AND ac.account_trade_day=#{todayDate}
+        AND ac.account_trade_type = '입금'
+        ORDER BY ac.account_trade_money DESC
+            LIMIT 3;
+    </select>
+
+    <select id="getTop3Category" parameterType="com.oopsw.clario.dto.dashboard.MemberDateDTO" resultType="com.oopsw.clario.dto.dashboard.Top3CategoryDTO">
+        SELECT cg.category_name as categoryName, SUM(ct.card_trade_money) AS categoryMoney
+        FROM member m
+                 JOIN MyCard mc ON m.member_id = mc.member_id
+                 JOIN CardTrade ct ON mc.card_num = ct.card_num
+                 JOIN Category cg ON ct.category_id = cg.category_id
+        WHERE m.member_id = #{memberId}
+            AND YEAR(ct.card_trade_day) = #{yearDate}
+          AND MONTH(ct.card_trade_day) = #{monthDate}
+        GROUP BY cg.category_name
+        ORDER BY categoryMoney DESC
+            LIMIT 3
+    </select>
+
+    <select id="getYearsExpenses" parameterType="com.oopsw.clario.dto.dashboard.MemberDateDTO" resultType="com.oopsw.clario.dto.dashboard.TradeDTO">
+        SELECT MONTH(ct.card_trade_day) as cardTradeMonth, SUM(card_trade_money) as cardTradeMoney
+        FROM member m JOIN MyCard mc ON m.member_id = mc.member_id
+            JOIN CardTrade ct ON mc.card_num = ct.card_num
+        WHERE m.member_id = #{memberId} AND YEAR(ct.card_trade_day) = #{yearDate} AND ct.card_trade_type IN ('결제', '승인')
+        GROUP BY MONTH(ct.card_trade_day)
+        ORDER BY MONTH(ct.card_trade_day)
+    </select>
+
+    <select id="getYearsIncomes" parameterType="com.oopsw.clario.dto.dashboard.MemberDateDTO" resultType="com.oopsw.clario.dto.dashboard.TradeDTO">
+        SELECT MONTH(ac.account_trade_day) as accountTradeMonth, SUM(account_trade_money) as accountTradeMoney
+        FROM member m JOIN MyBank mb ON m.member_id = mb.member_id
+            JOIN AccountTrade ac ON mb.bank_account_num = ac.bank_account_num
+        WHERE m.member_id = #{memberId} AND YEAR(ac.account_trade_day) = #{yearDate} AND ac.account_trade_type = '입금'
+        GROUP BY MONTH(ac.account_trade_day)
+        ORDER BY MONTH(ac.account_trade_day)
+    </select>
+</mapper>

@@ -1,0 +1,3667 @@
+{
+  "rsp_code": "A0000",
+  "rsp_msg": "성공",
+  "search_timestamp": "2025-06-01T12:30:00+09:00",
+  "account_transactions": [
+    {
+      "fintech_use_num": "123456789012345678901234",
+      "trans_list": [
+        {
+          "tran_date": "2024-01-02",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "187783",
+          "after_balance_amt": "812217",
+          "branch_name": "대구북부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-01-04",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "125410",
+          "after_balance_amt": "686807",
+          "branch_name": "서울중앙지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-01-09",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "334375",
+          "after_balance_amt": "1021182",
+          "branch_name": "인천동부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-01-09",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "487541",
+          "after_balance_amt": "1508723",
+          "branch_name": "인천동부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-01-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "308839",
+          "after_balance_amt": "1817562",
+          "branch_name": "인천동부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-01-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "58319",
+          "after_balance_amt": "1759243",
+          "branch_name": "울산지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-01-18",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "253488",
+          "after_balance_amt": "1505755",
+          "branch_name": "서울중앙지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-01-19",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "134326",
+          "after_balance_amt": "1371429",
+          "branch_name": "수원중앙지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-01-21",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "15468",
+          "after_balance_amt": "1355961",
+          "branch_name": "수원중앙지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-01-21",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "137464",
+          "after_balance_amt": "1218497",
+          "branch_name": "광주서부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-01-25",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "487405",
+          "after_balance_amt": "731092",
+          "branch_name": "수원중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-01-28",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "214316",
+          "after_balance_amt": "945408",
+          "branch_name": "울산지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-02-07",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "274216",
+          "after_balance_amt": "1219624",
+          "branch_name": "서울중앙지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-02-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "422808",
+          "after_balance_amt": "796816",
+          "branch_name": "인천동부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-02-14",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "359427",
+          "after_balance_amt": "1156243",
+          "branch_name": "수원중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-02-19",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "24505",
+          "after_balance_amt": "1131738",
+          "branch_name": "광주서부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-02-29",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "239341",
+          "after_balance_amt": "1371079",
+          "branch_name": "광주서부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-02-29",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "400711",
+          "after_balance_amt": "1771790",
+          "branch_name": "서울중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-03-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "164961",
+          "after_balance_amt": "1936751",
+          "branch_name": "울산지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-03-04",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "102463",
+          "after_balance_amt": "2039214",
+          "branch_name": "울산지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-03-07",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "401689",
+          "after_balance_amt": "2440903",
+          "branch_name": "수원중앙지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-03-07",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "271739",
+          "after_balance_amt": "2169164",
+          "branch_name": "대전지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-03-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "231244",
+          "after_balance_amt": "2400408",
+          "branch_name": "대전지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-03-12",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "219296",
+          "after_balance_amt": "2619704",
+          "branch_name": "대전지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-03-21",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "121433",
+          "after_balance_amt": "2498271",
+          "branch_name": "대전지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-03-21",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "92000",
+          "after_balance_amt": "2590271",
+          "branch_name": "부산남부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-03-25",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "233390",
+          "after_balance_amt": "2356881",
+          "branch_name": "수원중앙지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-03-28",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "197128",
+          "after_balance_amt": "2554009",
+          "branch_name": "인천동부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-03-28",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "491355",
+          "after_balance_amt": "3045364",
+          "branch_name": "서울중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-04-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "111687",
+          "after_balance_amt": "3157051",
+          "branch_name": "대전지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-04-03",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "42846",
+          "after_balance_amt": "3114205",
+          "branch_name": "서울중앙지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-04-08",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "227907",
+          "after_balance_amt": "2886298",
+          "branch_name": "수원중앙지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-04-10",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "405988",
+          "after_balance_amt": "2480310",
+          "branch_name": "부산남부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-04-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "391636",
+          "after_balance_amt": "2871946",
+          "branch_name": "부산남부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-04-12",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "362530",
+          "after_balance_amt": "3234476",
+          "branch_name": "대구북부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-04-17",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "490900",
+          "after_balance_amt": "3725376",
+          "branch_name": "수원중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-04-17",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "344537",
+          "after_balance_amt": "3380839",
+          "branch_name": "울산지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-04-23",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "308770",
+          "after_balance_amt": "3689609",
+          "branch_name": "부산남부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-04-26",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "322514",
+          "after_balance_amt": "4012123",
+          "branch_name": "인천동부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-04-27",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "227364",
+          "after_balance_amt": "3784759",
+          "branch_name": "대전지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-04-27",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "472386",
+          "after_balance_amt": "3312373",
+          "branch_name": "광주서부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-05-07",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "412568",
+          "after_balance_amt": "3724941",
+          "branch_name": "인천동부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-05-08",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "289937",
+          "after_balance_amt": "3435004",
+          "branch_name": "인천동부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-05-08",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "457615",
+          "after_balance_amt": "3892619",
+          "branch_name": "대구북부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-05-11",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "434825",
+          "after_balance_amt": "3457794",
+          "branch_name": "광주서부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-05-11",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "305799",
+          "after_balance_amt": "3763593",
+          "branch_name": "광주서부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-05-14",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "152825",
+          "after_balance_amt": "3916418",
+          "branch_name": "울산지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-05-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "336533",
+          "after_balance_amt": "3579885",
+          "branch_name": "대전지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-05-23",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "24190",
+          "after_balance_amt": "3555695",
+          "branch_name": "광주서부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-06-01",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "152558",
+          "after_balance_amt": "3403137",
+          "branch_name": "대구북부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-06-06",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "312665",
+          "after_balance_amt": "3715802",
+          "branch_name": "대전지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-06-06",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "359332",
+          "after_balance_amt": "4075134",
+          "branch_name": "대구북부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-06-09",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "209207",
+          "after_balance_amt": "3865927",
+          "branch_name": "수원중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-06-09",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "406149",
+          "after_balance_amt": "4272076",
+          "branch_name": "수원중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-06-26",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "27300",
+          "after_balance_amt": "4244776",
+          "branch_name": "서울중앙지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-06-26",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "68745",
+          "after_balance_amt": "4313521",
+          "branch_name": "수원중앙지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-06-28",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "117472",
+          "after_balance_amt": "4430993",
+          "branch_name": "대구북부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-06-28",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "344452",
+          "after_balance_amt": "4775445",
+          "branch_name": "서울중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-07-03",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "238284",
+          "after_balance_amt": "4537161",
+          "branch_name": "인천동부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-07-07",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "215863",
+          "after_balance_amt": "4753024",
+          "branch_name": "울산지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-07-07",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "336362",
+          "after_balance_amt": "4416662",
+          "branch_name": "광주서부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-07-15",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "495408",
+          "after_balance_amt": "3921254",
+          "branch_name": "수원중앙지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-07-15",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "63350",
+          "after_balance_amt": "3984604",
+          "branch_name": "수원중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-07-19",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "226054",
+          "after_balance_amt": "3758550",
+          "branch_name": "서울중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-07-19",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "84472",
+          "after_balance_amt": "3843022",
+          "branch_name": "울산지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-07-31",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "12503",
+          "after_balance_amt": "3855525",
+          "branch_name": "광주서부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-07-31",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "352213",
+          "after_balance_amt": "3503312",
+          "branch_name": "울산지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-08-11",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "29745",
+          "after_balance_amt": "3533057",
+          "branch_name": "부산남부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-08-11",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "252060",
+          "after_balance_amt": "3785117",
+          "branch_name": "부산남부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-08-13",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "198128",
+          "after_balance_amt": "3586989",
+          "branch_name": "울산지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-08-18",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "427724",
+          "after_balance_amt": "3159265",
+          "branch_name": "서울중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-08-19",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "431259",
+          "after_balance_amt": "2728006",
+          "branch_name": "대전지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-08-19",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "79896",
+          "after_balance_amt": "2807902",
+          "branch_name": "대전지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-08-27",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "2933",
+          "after_balance_amt": "2804969",
+          "branch_name": "대전지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-08-27",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "99560",
+          "after_balance_amt": "2904529",
+          "branch_name": "대전지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-09-01",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "346101",
+          "after_balance_amt": "3250630",
+          "branch_name": "광주서부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-09-01",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "40714",
+          "after_balance_amt": "3291344",
+          "branch_name": "서울중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-09-11",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "15552",
+          "after_balance_amt": "3275792",
+          "branch_name": "수원중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-09-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "219175",
+          "after_balance_amt": "3056617",
+          "branch_name": "부산남부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-09-14",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "409342",
+          "after_balance_amt": "3465959",
+          "branch_name": "수원중앙지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-09-19",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "297672",
+          "after_balance_amt": "3763631",
+          "branch_name": "부산남부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-09-22",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "27464",
+          "after_balance_amt": "3791095",
+          "branch_name": "광주서부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-09-22",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "229073",
+          "after_balance_amt": "4020168",
+          "branch_name": "인천동부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-09-24",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "4339",
+          "after_balance_amt": "4024507",
+          "branch_name": "대구북부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-09-24",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "51880",
+          "after_balance_amt": "3972627",
+          "branch_name": "울산지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-09-25",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "156022",
+          "after_balance_amt": "4128649",
+          "branch_name": "부산남부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-09-29",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "471876",
+          "after_balance_amt": "3656773",
+          "branch_name": "대구북부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-09-29",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "356537",
+          "after_balance_amt": "4013310",
+          "branch_name": "서울중앙지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-10-04",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "468030",
+          "after_balance_amt": "4481340",
+          "branch_name": "부산남부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-10-06",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "159982",
+          "after_balance_amt": "4641322",
+          "branch_name": "울산지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-10-07",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "59833",
+          "after_balance_amt": "4701155",
+          "branch_name": "대전지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-10-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "174208",
+          "after_balance_amt": "4875363",
+          "branch_name": "서울중앙지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-10-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "418798",
+          "after_balance_amt": "5294161",
+          "branch_name": "수원중앙지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-10-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "9147",
+          "after_balance_amt": "5285014",
+          "branch_name": "광주서부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-10-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "236971",
+          "after_balance_amt": "5048043",
+          "branch_name": "부산남부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-10-19",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "332393",
+          "after_balance_amt": "4715650",
+          "branch_name": "광주서부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-10-19",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "253468",
+          "after_balance_amt": "4969118",
+          "branch_name": "서울중앙지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-10-20",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "137506",
+          "after_balance_amt": "4831612",
+          "branch_name": "부산남부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-10-20",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "412498",
+          "after_balance_amt": "5244110",
+          "branch_name": "수원중앙지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-10-29",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "327004",
+          "after_balance_amt": "4917106",
+          "branch_name": "울산지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-10-30",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "306764",
+          "after_balance_amt": "4610342",
+          "branch_name": "대구북부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-11-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "101333",
+          "after_balance_amt": "4711675",
+          "branch_name": "대구북부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-11-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "198530",
+          "after_balance_amt": "4910205",
+          "branch_name": "광주서부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-11-06",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "6565",
+          "after_balance_amt": "4916770",
+          "branch_name": "울산지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-11-06",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "81268",
+          "after_balance_amt": "4998038",
+          "branch_name": "대구북부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-11-11",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "445231",
+          "after_balance_amt": "4552807",
+          "branch_name": "울산지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-11-14",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "102043",
+          "after_balance_amt": "4654850",
+          "branch_name": "인천동부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-11-17",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "123366",
+          "after_balance_amt": "4531484",
+          "branch_name": "부산남부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-11-22",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "329173",
+          "after_balance_amt": "4860657",
+          "branch_name": "대구북부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-11-25",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "208095",
+          "after_balance_amt": "4652562",
+          "branch_name": "대구북부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-11-29",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "468340",
+          "after_balance_amt": "4184222",
+          "branch_name": "수원중앙지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-11-29",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "428504",
+          "after_balance_amt": "4612726",
+          "branch_name": "광주서부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-11-30",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "321130",
+          "after_balance_amt": "4933856",
+          "branch_name": "울산지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-11-30",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "467574",
+          "after_balance_amt": "4466282",
+          "branch_name": "광주서부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-12-01",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "482680",
+          "after_balance_amt": "4948962",
+          "branch_name": "인천동부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-12-01",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "164288",
+          "after_balance_amt": "4784674",
+          "branch_name": "부산남부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-12-05",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "28305",
+          "after_balance_amt": "4756369",
+          "branch_name": "대구북부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-12-09",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "57751",
+          "after_balance_amt": "4698618",
+          "branch_name": "대구북부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-12-09",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "383132",
+          "after_balance_amt": "4315486",
+          "branch_name": "서울중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-12-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "350787",
+          "after_balance_amt": "3964699",
+          "branch_name": "인천동부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-12-15",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "339299",
+          "after_balance_amt": "3625400",
+          "branch_name": "대전지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-12-19",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "161251",
+          "after_balance_amt": "3464149",
+          "branch_name": "대전지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-12-20",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "442244",
+          "after_balance_amt": "3906393",
+          "branch_name": "수원중앙지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-12-25",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "284611",
+          "after_balance_amt": "4191004",
+          "branch_name": "부산남부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-12-25",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "73622",
+          "after_balance_amt": "4117382",
+          "branch_name": "광주서부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-12-27",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "224181",
+          "after_balance_amt": "4341563",
+          "branch_name": "서울중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-12-29",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "450866",
+          "after_balance_amt": "3890697",
+          "branch_name": "서울중앙지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-12-29",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "261497",
+          "after_balance_amt": "3629200",
+          "branch_name": "부산남부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2025-01-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "70616",
+          "after_balance_amt": "3699816",
+          "branch_name": "울산지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2025-01-05",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "412193",
+          "after_balance_amt": "3287623",
+          "branch_name": "울산지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-01-05",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "406049",
+          "after_balance_amt": "3693672",
+          "branch_name": "울산지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2025-01-07",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "160989",
+          "after_balance_amt": "3854661",
+          "branch_name": "대구북부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-01-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "198303",
+          "after_balance_amt": "4052964",
+          "branch_name": "대전지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-01-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "200515",
+          "after_balance_amt": "4253479",
+          "branch_name": "서울중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2025-01-12",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "349459",
+          "after_balance_amt": "3904020",
+          "branch_name": "부산남부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-01-21",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "110106",
+          "after_balance_amt": "4014126",
+          "branch_name": "울산지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2025-01-26",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "26683",
+          "after_balance_amt": "4040809",
+          "branch_name": "대구북부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2025-01-30",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "413762",
+          "after_balance_amt": "4454571",
+          "branch_name": "인천동부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2025-02-01",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "83481",
+          "after_balance_amt": "4538052",
+          "branch_name": "대구북부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2025-02-04",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "171416",
+          "after_balance_amt": "4366636",
+          "branch_name": "대구북부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2025-02-09",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "407751",
+          "after_balance_amt": "4774387",
+          "branch_name": "수원중앙지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-02-09",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "85642",
+          "after_balance_amt": "4688745",
+          "branch_name": "수원중앙지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2025-02-11",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "435965",
+          "after_balance_amt": "5124710",
+          "branch_name": "대구북부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-02-11",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "436389",
+          "after_balance_amt": "4688321",
+          "branch_name": "서울중앙지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2025-02-15",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "26893",
+          "after_balance_amt": "4661428",
+          "branch_name": "울산지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2025-02-15",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "412047",
+          "after_balance_amt": "4249381",
+          "branch_name": "대구북부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2025-02-26",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "291970",
+          "after_balance_amt": "4541351",
+          "branch_name": "부산남부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-02-27",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "43324",
+          "after_balance_amt": "4584675",
+          "branch_name": "인천동부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2025-02-27",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "385445",
+          "after_balance_amt": "4199230",
+          "branch_name": "광주서부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-03-01",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "140141",
+          "after_balance_amt": "4339371",
+          "branch_name": "인천동부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-03-01",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "76458",
+          "after_balance_amt": "4262913",
+          "branch_name": "대전지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-03-09",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "141180",
+          "after_balance_amt": "4404093",
+          "branch_name": "서울중앙지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2025-03-10",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "350400",
+          "after_balance_amt": "4053693",
+          "branch_name": "울산지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-03-11",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "484094",
+          "after_balance_amt": "3569599",
+          "branch_name": "수원중앙지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-03-11",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "350010",
+          "after_balance_amt": "3219589",
+          "branch_name": "수원중앙지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-03-12",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "431568",
+          "after_balance_amt": "3651157",
+          "branch_name": "수원중앙지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-03-12",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "448999",
+          "after_balance_amt": "3202158",
+          "branch_name": "울산지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2025-03-20",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "361173",
+          "after_balance_amt": "2840985",
+          "branch_name": "울산지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2025-03-22",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "52097",
+          "after_balance_amt": "2788888",
+          "branch_name": "대전지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2025-03-22",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "489650",
+          "after_balance_amt": "3278538",
+          "branch_name": "수원중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2025-03-25",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "87139",
+          "after_balance_amt": "3365677",
+          "branch_name": "인천동부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-04-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "249574",
+          "after_balance_amt": "3116103",
+          "branch_name": "대구북부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-04-08",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "403012",
+          "after_balance_amt": "3519115",
+          "branch_name": "서울중앙지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2025-04-08",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "172025",
+          "after_balance_amt": "3691140",
+          "branch_name": "대구북부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2025-04-15",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "354495",
+          "after_balance_amt": "3336645",
+          "branch_name": "울산지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-04-15",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "15884",
+          "after_balance_amt": "3352529",
+          "branch_name": "서울중앙지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2025-04-16",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "50274",
+          "after_balance_amt": "3402803",
+          "branch_name": "인천동부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-04-19",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "247073",
+          "after_balance_amt": "3155730",
+          "branch_name": "광주서부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2025-04-19",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "147479",
+          "after_balance_amt": "3008251",
+          "branch_name": "대전지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2025-04-24",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "322656",
+          "after_balance_amt": "3330907",
+          "branch_name": "부산남부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-04-27",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "412466",
+          "after_balance_amt": "3743373",
+          "branch_name": "대전지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-04-27",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "110368",
+          "after_balance_amt": "3853741",
+          "branch_name": "서울중앙지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2025-04-30",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "324547",
+          "after_balance_amt": "3529194",
+          "branch_name": "서울중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2025-05-02",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "265334",
+          "after_balance_amt": "3263860",
+          "branch_name": "인천동부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2025-05-08",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "121765",
+          "after_balance_amt": "3385625",
+          "branch_name": "인천동부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2025-05-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "62438",
+          "after_balance_amt": "3323187",
+          "branch_name": "광주서부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-05-14",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "283345",
+          "after_balance_amt": "3606532",
+          "branch_name": "인천동부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2025-05-18",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "246306",
+          "after_balance_amt": "3360226",
+          "branch_name": "대구북부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2025-05-22",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "136212",
+          "after_balance_amt": "3224014",
+          "branch_name": "대구북부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2025-05-22",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "152977",
+          "after_balance_amt": "3376991",
+          "branch_name": "대구북부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2025-05-25",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "289739",
+          "after_balance_amt": "3666730",
+          "branch_name": "울산지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2025-05-28",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "47168",
+          "after_balance_amt": "3713898",
+          "branch_name": "인천동부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2025-05-30",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "23315",
+          "after_balance_amt": "3690583",
+          "branch_name": "서울중앙지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2025-05-30",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "47824",
+          "after_balance_amt": "3738407",
+          "branch_name": "대전지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-06-03",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "294954",
+          "after_balance_amt": "4033361",
+          "branch_name": "울산지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2025-06-03",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "155797",
+          "after_balance_amt": "4189158",
+          "branch_name": "대전지점",
+          "remark": "관리비"
+        }
+      ]
+    },
+    {
+      "fintech_use_num": "987654321098765432109876",
+      "trans_list": [
+        {
+          "tran_date": "2024-01-01",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "390057",
+          "after_balance_amt": "609943",
+          "branch_name": "울산지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-01-01",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "289472",
+          "after_balance_amt": "320471",
+          "branch_name": "서울중앙지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-01-05",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "12145",
+          "after_balance_amt": "332616",
+          "branch_name": "부산남부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-01-05",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "287326",
+          "after_balance_amt": "619942",
+          "branch_name": "부산남부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-01-08",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "193193",
+          "after_balance_amt": "426749",
+          "branch_name": "부산남부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-01-13",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "438317",
+          "after_balance_amt": "-11568",
+          "branch_name": "인천동부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-01-16",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "495259",
+          "after_balance_amt": "-506827",
+          "branch_name": "수원중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-01-16",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "419401",
+          "after_balance_amt": "-87426",
+          "branch_name": "대전지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-01-21",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "305372",
+          "after_balance_amt": "-392798",
+          "branch_name": "대전지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-01-23",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "160526",
+          "after_balance_amt": "-232272",
+          "branch_name": "인천동부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-01-23",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "422770",
+          "after_balance_amt": "190498",
+          "branch_name": "대구북부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-02-05",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "458612",
+          "after_balance_amt": "649110",
+          "branch_name": "대전지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-02-05",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "245230",
+          "after_balance_amt": "403880",
+          "branch_name": "대구북부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-02-08",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "236399",
+          "after_balance_amt": "640279",
+          "branch_name": "부산남부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-02-09",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "397171",
+          "after_balance_amt": "1037450",
+          "branch_name": "대전지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-02-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "110175",
+          "after_balance_amt": "927275",
+          "branch_name": "대전지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-02-14",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "182834",
+          "after_balance_amt": "1110109",
+          "branch_name": "부산남부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-02-19",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "157458",
+          "after_balance_amt": "1267567",
+          "branch_name": "인천동부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-02-19",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "370351",
+          "after_balance_amt": "1637918",
+          "branch_name": "광주서부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-03-03",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "274218",
+          "after_balance_amt": "1912136",
+          "branch_name": "대전지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-03-04",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "111693",
+          "after_balance_amt": "1800443",
+          "branch_name": "울산지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-03-04",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "153024",
+          "after_balance_amt": "1953467",
+          "branch_name": "수원중앙지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-03-06",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "181018",
+          "after_balance_amt": "2134485",
+          "branch_name": "울산지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-03-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "192630",
+          "after_balance_amt": "2327115",
+          "branch_name": "광주서부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-03-12",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "437957",
+          "after_balance_amt": "1889158",
+          "branch_name": "부산남부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-03-13",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "20726",
+          "after_balance_amt": "1909884",
+          "branch_name": "대전지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-03-13",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "375226",
+          "after_balance_amt": "2285110",
+          "branch_name": "대구북부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-03-18",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "374423",
+          "after_balance_amt": "1910687",
+          "branch_name": "부산남부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-03-26",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "436741",
+          "after_balance_amt": "2347428",
+          "branch_name": "대구북부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-03-26",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "34956",
+          "after_balance_amt": "2382384",
+          "branch_name": "대전지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-03-30",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "257873",
+          "after_balance_amt": "2124511",
+          "branch_name": "부산남부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-03-31",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "406658",
+          "after_balance_amt": "1717853",
+          "branch_name": "부산남부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-04-01",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "232579",
+          "after_balance_amt": "1950432",
+          "branch_name": "부산남부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-04-01",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "374723",
+          "after_balance_amt": "1575709",
+          "branch_name": "부산남부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-04-02",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "441428",
+          "after_balance_amt": "1134281",
+          "branch_name": "대구북부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-04-02",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "106314",
+          "after_balance_amt": "1027967",
+          "branch_name": "광주서부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-04-03",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "50907",
+          "after_balance_amt": "977060",
+          "branch_name": "대구북부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-04-03",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "329602",
+          "after_balance_amt": "1306662",
+          "branch_name": "부산남부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-04-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "243044",
+          "after_balance_amt": "1063618",
+          "branch_name": "대구북부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-04-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "332827",
+          "after_balance_amt": "730791",
+          "branch_name": "대구북부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-04-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "384112",
+          "after_balance_amt": "1114903",
+          "branch_name": "서울중앙지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-04-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "378064",
+          "after_balance_amt": "1492967",
+          "branch_name": "대전지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-04-25",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "70035",
+          "after_balance_amt": "1422932",
+          "branch_name": "수원중앙지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-04-28",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "35022",
+          "after_balance_amt": "1387910",
+          "branch_name": "수원중앙지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-04-28",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "37488",
+          "after_balance_amt": "1425398",
+          "branch_name": "서울중앙지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-05-01",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "405576",
+          "after_balance_amt": "1830974",
+          "branch_name": "인천동부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-05-01",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "67993",
+          "after_balance_amt": "1762981",
+          "branch_name": "인천동부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-05-05",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "466535",
+          "after_balance_amt": "1296446",
+          "branch_name": "수원중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-05-05",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "116678",
+          "after_balance_amt": "1413124",
+          "branch_name": "서울중앙지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-05-10",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "349438",
+          "after_balance_amt": "1063686",
+          "branch_name": "수원중앙지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-05-13",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "455898",
+          "after_balance_amt": "1519584",
+          "branch_name": "인천동부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-05-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "310255",
+          "after_balance_amt": "1209329",
+          "branch_name": "대구북부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-05-19",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "408975",
+          "after_balance_amt": "1618304",
+          "branch_name": "인천동부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-05-19",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "245288",
+          "after_balance_amt": "1373016",
+          "branch_name": "수원중앙지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-05-23",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "378896",
+          "after_balance_amt": "994120",
+          "branch_name": "서울중앙지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-05-23",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "406279",
+          "after_balance_amt": "1400399",
+          "branch_name": "서울중앙지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-05-30",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "177985",
+          "after_balance_amt": "1222414",
+          "branch_name": "서울중앙지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-05-30",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "396637",
+          "after_balance_amt": "1619051",
+          "branch_name": "대구북부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-06-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "24054",
+          "after_balance_amt": "1643105",
+          "branch_name": "서울중앙지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-06-02",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "277551",
+          "after_balance_amt": "1365554",
+          "branch_name": "인천동부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-06-03",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "254379",
+          "after_balance_amt": "1619933",
+          "branch_name": "대전지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-06-03",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "377053",
+          "after_balance_amt": "1996986",
+          "branch_name": "서울중앙지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-06-07",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "225557",
+          "after_balance_amt": "2222543",
+          "branch_name": "수원중앙지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-06-07",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "309649",
+          "after_balance_amt": "1912894",
+          "branch_name": "울산지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-06-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "146142",
+          "after_balance_amt": "2059036",
+          "branch_name": "인천동부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-06-15",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "362164",
+          "after_balance_amt": "1696872",
+          "branch_name": "대구북부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-06-15",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "300390",
+          "after_balance_amt": "1396482",
+          "branch_name": "대구북부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-06-18",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "51096",
+          "after_balance_amt": "1345386",
+          "branch_name": "서울중앙지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-06-20",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "413520",
+          "after_balance_amt": "1758906",
+          "branch_name": "수원중앙지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-06-28",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "462702",
+          "after_balance_amt": "2221608",
+          "branch_name": "인천동부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-06-30",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "449150",
+          "after_balance_amt": "1772458",
+          "branch_name": "울산지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-07-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "28111",
+          "after_balance_amt": "1800569",
+          "branch_name": "광주서부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-07-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "259794",
+          "after_balance_amt": "2060363",
+          "branch_name": "대전지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-07-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "39763",
+          "after_balance_amt": "2020600",
+          "branch_name": "광주서부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-07-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "286837",
+          "after_balance_amt": "1733763",
+          "branch_name": "대구북부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-07-13",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "416495",
+          "after_balance_amt": "2150258",
+          "branch_name": "울산지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-07-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "462888",
+          "after_balance_amt": "1687370",
+          "branch_name": "부산남부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-07-18",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "486245",
+          "after_balance_amt": "1201125",
+          "branch_name": "대구북부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-07-18",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "136469",
+          "after_balance_amt": "1064656",
+          "branch_name": "울산지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-07-28",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "155232",
+          "after_balance_amt": "1219888",
+          "branch_name": "인천동부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-07-28",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "100798",
+          "after_balance_amt": "1119090",
+          "branch_name": "광주서부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-07-30",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "150000",
+          "after_balance_amt": "1269090",
+          "branch_name": "대구북부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-08-02",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "426521",
+          "after_balance_amt": "842569",
+          "branch_name": "서울중앙지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-08-02",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "56862",
+          "after_balance_amt": "785707",
+          "branch_name": "대전지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-08-04",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "477218",
+          "after_balance_amt": "308489",
+          "branch_name": "부산남부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-08-05",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "489903",
+          "after_balance_amt": "-181414",
+          "branch_name": "광주서부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-08-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "94235",
+          "after_balance_amt": "-275649",
+          "branch_name": "서울중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-08-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "173787",
+          "after_balance_amt": "-449436",
+          "branch_name": "부산남부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-08-10",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "300815",
+          "after_balance_amt": "-750251",
+          "branch_name": "부산남부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-08-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "481108",
+          "after_balance_amt": "-269143",
+          "branch_name": "광주서부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-08-14",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "197691",
+          "after_balance_amt": "-71452",
+          "branch_name": "울산지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-08-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "350574",
+          "after_balance_amt": "-422026",
+          "branch_name": "대전지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-08-17",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "9017",
+          "after_balance_amt": "-413009",
+          "branch_name": "대전지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-08-17",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "183692",
+          "after_balance_amt": "-229317",
+          "branch_name": "수원중앙지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-08-20",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "355439",
+          "after_balance_amt": "-584756",
+          "branch_name": "서울중앙지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-08-22",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "56958",
+          "after_balance_amt": "-641714",
+          "branch_name": "부산남부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-08-23",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "151272",
+          "after_balance_amt": "-490442",
+          "branch_name": "광주서부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-08-23",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "88246",
+          "after_balance_amt": "-578688",
+          "branch_name": "부산남부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2024-08-27",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "88023",
+          "after_balance_amt": "-490665",
+          "branch_name": "대구북부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-08-31",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "137108",
+          "after_balance_amt": "-627773",
+          "branch_name": "부산남부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-09-08",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "406975",
+          "after_balance_amt": "-1034748",
+          "branch_name": "대전지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-09-08",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "409983",
+          "after_balance_amt": "-1444731",
+          "branch_name": "인천동부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-09-18",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "138360",
+          "after_balance_amt": "-1583091",
+          "branch_name": "서울중앙지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-09-18",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "103607",
+          "after_balance_amt": "-1686698",
+          "branch_name": "서울중앙지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-09-20",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "276802",
+          "after_balance_amt": "-1963500",
+          "branch_name": "수원중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-09-22",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "179881",
+          "after_balance_amt": "-2143381",
+          "branch_name": "부산남부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-09-22",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "34335",
+          "after_balance_amt": "-2177716",
+          "branch_name": "수원중앙지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-09-23",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "467290",
+          "after_balance_amt": "-1710426",
+          "branch_name": "서울중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-09-30",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "499407",
+          "after_balance_amt": "-2209833",
+          "branch_name": "울산지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-10-01",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "325821",
+          "after_balance_amt": "-1884012",
+          "branch_name": "대구북부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-10-01",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "168167",
+          "after_balance_amt": "-2052179",
+          "branch_name": "울산지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-10-22",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "411470",
+          "after_balance_amt": "-2463649",
+          "branch_name": "인천동부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-10-23",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "434827",
+          "after_balance_amt": "-2898476",
+          "branch_name": "대전지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-10-23",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "169660",
+          "after_balance_amt": "-3068136",
+          "branch_name": "광주서부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-10-27",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "469957",
+          "after_balance_amt": "-3538093",
+          "branch_name": "부산남부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2024-10-30",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "213795",
+          "after_balance_amt": "-3324298",
+          "branch_name": "광주서부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2024-11-04",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "496566",
+          "after_balance_amt": "-2827732",
+          "branch_name": "울산지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-11-10",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "101441",
+          "after_balance_amt": "-2929173",
+          "branch_name": "부산남부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-11-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "75900",
+          "after_balance_amt": "-2853273",
+          "branch_name": "대전지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2024-11-12",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "229270",
+          "after_balance_amt": "-3082543",
+          "branch_name": "광주서부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2024-11-18",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "475684",
+          "after_balance_amt": "-2606859",
+          "branch_name": "인천동부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-11-27",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "93577",
+          "after_balance_amt": "-2513282",
+          "branch_name": "대구북부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-11-27",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "117430",
+          "after_balance_amt": "-2395852",
+          "branch_name": "대구북부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2024-12-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "293231",
+          "after_balance_amt": "-2102621",
+          "branch_name": "수원중앙지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2024-12-02",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "451931",
+          "after_balance_amt": "-2554552",
+          "branch_name": "울산지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2024-12-13",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "492568",
+          "after_balance_amt": "-3047120",
+          "branch_name": "대구북부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2024-12-20",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "321354",
+          "after_balance_amt": "-2725766",
+          "branch_name": "울산지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2024-12-20",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "225981",
+          "after_balance_amt": "-2951747",
+          "branch_name": "울산지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2024-12-27",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "466896",
+          "after_balance_amt": "-2484851",
+          "branch_name": "인천동부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-01-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "254660",
+          "after_balance_amt": "-2230191",
+          "branch_name": "대전지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2025-01-02",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "71680",
+          "after_balance_amt": "-2158511",
+          "branch_name": "대구북부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-01-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "276284",
+          "after_balance_amt": "-2434795",
+          "branch_name": "서울중앙지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2025-01-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "324245",
+          "after_balance_amt": "-2759040",
+          "branch_name": "부산남부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2025-01-16",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "43797",
+          "after_balance_amt": "-2715243",
+          "branch_name": "울산지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2025-01-22",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "259360",
+          "after_balance_amt": "-2974603",
+          "branch_name": "대구북부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-02-04",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "306446",
+          "after_balance_amt": "-3281049",
+          "branch_name": "서울중앙지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2025-02-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "360302",
+          "after_balance_amt": "-3641351",
+          "branch_name": "인천동부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-02-06",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "193266",
+          "after_balance_amt": "-3834617",
+          "branch_name": "인천동부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-02-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "304859",
+          "after_balance_amt": "-3529758",
+          "branch_name": "광주서부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2025-02-12",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "421479",
+          "after_balance_amt": "-3108279",
+          "branch_name": "수원중앙지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-02-12",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "239603",
+          "after_balance_amt": "-2868676",
+          "branch_name": "수원중앙지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-02-16",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "283453",
+          "after_balance_amt": "-2585223",
+          "branch_name": "대전지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-02-24",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "274170",
+          "after_balance_amt": "-2311053",
+          "branch_name": "서울중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2025-02-24",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "196810",
+          "after_balance_amt": "-2114243",
+          "branch_name": "울산지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2025-02-26",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "444540",
+          "after_balance_amt": "-1669703",
+          "branch_name": "서울중앙지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2025-03-04",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "494056",
+          "after_balance_amt": "-1175647",
+          "branch_name": "광주서부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-03-04",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "362691",
+          "after_balance_amt": "-1538338",
+          "branch_name": "서울중앙지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-03-09",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "25189",
+          "after_balance_amt": "-1513149",
+          "branch_name": "대구북부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2025-03-13",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "383788",
+          "after_balance_amt": "-1896937",
+          "branch_name": "대구북부지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2025-03-13",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "306034",
+          "after_balance_amt": "-2202971",
+          "branch_name": "대구북부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-03-17",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "197094",
+          "after_balance_amt": "-2005877",
+          "branch_name": "수원중앙지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2025-03-17",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "278448",
+          "after_balance_amt": "-2284325",
+          "branch_name": "대구북부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-03-19",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "344631",
+          "after_balance_amt": "-1939694",
+          "branch_name": "대구북부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-04-02",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "255887",
+          "after_balance_amt": "-2195581",
+          "branch_name": "대전지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2025-04-10",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "29824",
+          "after_balance_amt": "-2165757",
+          "branch_name": "대구북부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-04-12",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "7910",
+          "after_balance_amt": "-2173667",
+          "branch_name": "수원중앙지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2025-04-14",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "467144",
+          "after_balance_amt": "-1706523",
+          "branch_name": "광주서부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-04-14",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "245347",
+          "after_balance_amt": "-1951870",
+          "branch_name": "부산남부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2025-04-16",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "188833",
+          "after_balance_amt": "-1763037",
+          "branch_name": "부산남부지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-04-16",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "419902",
+          "after_balance_amt": "-1343135",
+          "branch_name": "대전지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-04-20",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "393401",
+          "after_balance_amt": "-949734",
+          "branch_name": "대전지점",
+          "remark": "식비"
+        },
+        {
+          "tran_date": "2025-04-20",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "14579",
+          "after_balance_amt": "-964313",
+          "branch_name": "광주서부지점",
+          "remark": "월세"
+        },
+        {
+          "tran_date": "2025-04-24",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "286891",
+          "after_balance_amt": "-677422",
+          "branch_name": "울산지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2025-04-30",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "418455",
+          "after_balance_amt": "-258967",
+          "branch_name": "인천동부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2025-05-05",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "58980",
+          "after_balance_amt": "-199987",
+          "branch_name": "대구북부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2025-05-05",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "244173",
+          "after_balance_amt": "-444160",
+          "branch_name": "인천동부지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-05-09",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "78530",
+          "after_balance_amt": "-522690",
+          "branch_name": "수원중앙지점",
+          "remark": "월급"
+        },
+        {
+          "tran_date": "2025-05-09",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "24371",
+          "after_balance_amt": "-547061",
+          "branch_name": "인천동부지점",
+          "remark": "기타수입"
+        },
+        {
+          "tran_date": "2025-05-17",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "7952",
+          "after_balance_amt": "-555013",
+          "branch_name": "부산남부지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2025-05-17",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "291654",
+          "after_balance_amt": "-263359",
+          "branch_name": "서울중앙지점",
+          "remark": "카드대금"
+        },
+        {
+          "tran_date": "2025-05-18",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "498334",
+          "after_balance_amt": "-761693",
+          "branch_name": "대구북부지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2025-05-21",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "474888",
+          "after_balance_amt": "-1236581",
+          "branch_name": "대구북부지점",
+          "remark": "기타지출"
+        },
+        {
+          "tran_date": "2025-05-25",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "391499",
+          "after_balance_amt": "-845082",
+          "branch_name": "인천동부지점",
+          "remark": "쇼핑"
+        },
+        {
+          "tran_date": "2025-05-25",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "441325",
+          "after_balance_amt": "-403757",
+          "branch_name": "서울중앙지점",
+          "remark": "관리비"
+        },
+        {
+          "tran_date": "2025-05-28",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "328055",
+          "after_balance_amt": "-75702",
+          "branch_name": "대전지점",
+          "remark": "적금이체"
+        },
+        {
+          "tran_date": "2025-05-30",
+          "tran_time": "000000",
+          "inout_type": "OUT",
+          "tran_type": "출금",
+          "tran_amt": "369470",
+          "after_balance_amt": "-445172",
+          "branch_name": "수원중앙지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2025-05-30",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "26231",
+          "after_balance_amt": "-418941",
+          "branch_name": "부산남부지점",
+          "remark": "이체"
+        },
+        {
+          "tran_date": "2025-06-03",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "99289",
+          "after_balance_amt": "-319652",
+          "branch_name": "광주서부지점",
+          "remark": "교통비"
+        },
+        {
+          "tran_date": "2025-06-03",
+          "tran_time": "000000",
+          "inout_type": "IN",
+          "tran_type": "입금",
+          "tran_amt": "488370",
+          "after_balance_amt": "168718",
+          "branch_name": "수원중앙지점",
+          "remark": "교통비"
+        }
+      ]
+    }
+  ]
+}
