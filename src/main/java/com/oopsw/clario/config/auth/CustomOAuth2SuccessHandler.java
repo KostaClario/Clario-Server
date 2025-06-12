@@ -1,9 +1,11 @@
 package com.oopsw.clario.config.auth;
 
+import com.oopsw.clario.config.jwt.JwtUtil;
+import com.oopsw.clario.domain.member.Member;
+import com.oopsw.clario.domain.member.MemberRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -12,29 +14,37 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
-    private final HttpSession httpSession;
+    private final JwtUtil jwtUtil;
+    private final MemberRepository memberRepository;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
 
-        // 세션에서 리다이렉트 URL 꺼내기
-        String redirectUrl = (String) httpSession.getAttribute("redirectUrl");
-        if (redirectUrl == null) {
-            redirectUrl = "/"; // 기본값
-        }
+        CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
+        String email = oAuth2User.getEmail();
 
-        log.info("✅ OAuth 로그인 성공! 리다이렉트 URL: {}", redirectUrl);
+        // JWT 토큰 생성
+        String token = jwtUtil.generateToken(email);
 
-        // 세션 정리 (옵션)
-        httpSession.removeAttribute("redirectUrl");
+        // JWT 토큰을 헤더에 추가 (또는 필요하면 쿠키로도 가능)
+        response.setHeader("Authorization", "Bearer " + token);
+        log.info("JWT 토큰 발급 완료 - {}", token);
 
+        // 회원 여부 확인
+        Member member = memberRepository.findByEmail(email).orElse(null);
+
+        String redirectUrl = (member != null && Boolean.TRUE.equals(member.getActivation()))
+                ? "/dashboard"
+                : "/privacy";
+
+        log.info("OAuth 로그인 성공 - 리다이렉트: {}", redirectUrl);
         response.sendRedirect(redirectUrl);
     }
 }

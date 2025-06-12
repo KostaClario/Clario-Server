@@ -2,6 +2,7 @@ package com.oopsw.clario.config.auth;
 
 
 
+import com.oopsw.clario.config.jwt.JwtAuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
@@ -23,6 +25,7 @@ public class SecurityConfig {
     private final CustomOAuth2UserService customOAuth2UserService;
     private final CustomOAuth2FailureHandler customOAuth2FailureHandler;
     private final CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
+    private final JwtAuthorizationFilter jwtAuthorizationFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -75,11 +78,10 @@ public class SecurityConfig {
                                 .failureHandler(customOAuth2FailureHandler)
                                 .userInfoEndpoint(
                                         (userInfo) -> userInfo
-                                                .userService(customOAuth2UserService)
-                                )
+                                                .userService(customOAuth2UserService))
                                 // redirectUrl 세션 기반 분기 처리
-                                .successHandler(customOAuth2SuccessHandler)
-                )
+                                .successHandler(customOAuth2SuccessHandler))
+                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
         ;
         return http.build();
     }
