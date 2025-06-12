@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CLARIO - 투명한 자산관리</title>
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo-section">
+            <img src="/img/ClarioPig.png" alt="CLARIO Logo" class="logo-img" />
+            <div class="logo-text">
+                <h2>CLARIO</h2>
+                <p class="slogan">CLEAR INPUT OUT</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="text-shadow-container">
+            <h1 class="main-shadow-text">투명한 자산관리</h1>
+            <p class="sub-title">클라리오와 시작하세요.</p>
+        </div>
+
+        <div class="bottom-section">
+            <p class="subtext">보이지 않던 지출까지 한눈에 정리해드립니다.</p>
+            <button id="googleLoginBtn" class="google-login-btn">
+                <img src="/img/Googlelogo.svg" alt="Google Icon" />
+                <span>Google 계정으로 시작하기</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    axios.defaults.baseURL = 'http://127.0.0.1:8883';
+    window.addEventListener('load', function () {
+        const mainText = document.querySelector('.main-shadow-text');
+        const subTitle = document.querySelector('.sub-title');
+        const subtext = document.querySelector('.subtext');
+        const loginBtn = document.getElementById('googleLoginBtn');
+        const logoSection = document.querySelector('.logo-section');
+
+        // 초기 상태
+        gsap.set(logoSection, { opacity: 0, y: -100, scale: 0.8 });
+        gsap.set(mainText, { opacity: 0, x: -200, rotationY: 90 });
+        gsap.set(subTitle, { opacity: 0, x: 200, scale: 0.5 });
+        gsap.set(subtext, { opacity: 0, y: 50, scale: 0.8 });
+        gsap.set(loginBtn, { opacity: 0, y: 100, scale: 0.7 });
+
+        const tl = gsap.timeline();
+
+        tl.to(logoSection, {
+            opacity: 1, y: 0, scale: 1, duration: 1.2, ease: "back.out(1.7)"
+        }).to(mainText, {
+            opacity: 1, x: 0, rotationY: 0, duration: 1.5, ease: "power3.out"
+        }, "-=0.5").to(subTitle, {
+            opacity: 1, x: 0, scale: 1, duration: 1, ease: "elastic.out(1, 0.5)"
+        }, "-=0.8").to(subtext, {
+            opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out"
+        }, "-=0.3").to(loginBtn, {
+            opacity: 1, y: 0, scale: 1, duration: 1, ease: "bounce.out"
+        }, "-=0.2");
+
+        // 텍스트 쉐도우 애니메이션
+        function createTextShadow() {
+            let shadow = '';
+            for (let i = 1; i <= 10; i++) {
+                const opacity = Math.max(0.15, 1 - (i * 0.08));
+                shadow += `${i}px ${i}px 0 rgba(103, 80, 164, ${opacity})`;
+                if (i < 10) shadow += ', ';
+            }
+            return shadow;
+        }
+
+        tl.fromTo(mainText, {
+            textShadow: '0px 0px 0 rgba(103, 80, 164, 0)'
+        }, {
+            textShadow: createTextShadow(),
+            duration: 2,
+            ease: "power2.out",
+            repeat: -1,
+            yoyo: true,
+            repeatDelay: 1.5
+        }, "+=0.5");
+
+        // 버튼 hover 애니메이션
+        loginBtn.addEventListener('mouseenter', function () {
+            gsap.to(this, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+        });
+
+        loginBtn.addEventListener('mouseleave', function () {
+            gsap.to(this, { scale: 1, duration: 0.3, ease: "power2.out" });
+        });
+
+        // 실제 로그인 요청 (axios가 아닌 리디렉션)
+        loginBtn.addEventListener('click', function () {
+            window.location.href = "/oauth2/authorization/google";
+        });
+    });
+</script>
+</body>
+</html>
