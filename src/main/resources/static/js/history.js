@@ -143,6 +143,34 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error("카테고리 불러오기 실패", error);
             });
     }
+    // 상단바
+    axios.get('/api/bar')
+        .then(response => {
+            const user = response.data;
+            console.log("사용자 이름:", user.name);
+            const nameSpan = document.querySelector("#user-name");
+            if (user.name) {
+                nameSpan.textContent = user.name + '님';
+            }
+            if (user.photo) {
+                const img = document.querySelector("#profile-img");
+                img.src = user.photo;
+                img.style.display = 'block';
+            }
+        })
+        .catch(error => {
+            console.error("사용자 정보 불러오기 실패:", error);
+        });
+    //로그아웃
+    document.getElementById("logout").addEventListener("click", () => {
+        axios.post("/logout", null, { withCredentials: true })
+            .then(() => {
+                window.location.href = "/html/account/login.html";
+            })
+            .catch(err => {
+                console.error("❌ 로그아웃 실패", err);
+            });
+    });
 
 // 클릭 이벤트에서 함수 호출만
     categoryBtn.addEventListener("click", () => {
