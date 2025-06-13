@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이데이터 연동하기</title>
+    <link rel="stylesheet" href="/css/mydataConnection.css">
+</head>
+<body>
+
+<div class="container" th:with="memberId=${memberId}">
+    <h2>마이데이터 연동하기</h2>
+    <div class="data-section">
+        <div class="data-group">
+            <h3>은행 목록</h3>
+            <div th:each="bank : ${banks}">
+                <label class="data-item">
+                    <input type="checkbox" checked />
+                    <span th:text="${bank.bankName}">은행명</span>
+                </label>
+            </div>
+            <div th:if="${banks.empty}">
+                <p>등록된 은행 계좌가 없습니다.</p>
+            </div>
+        </div>
+
+        <div class="data-group">
+            <h3>카드 목록</h3>
+            <div th:each="card : ${cards}">
+                <label class="data-item">
+                    <input type="checkbox" checked />
+                    <span th:text="${card.cardCompany}">카드사</span>
+                </label>
+            </div>
+            <div th:if="${cards.empty}">
+                <p>등록된 카드 정보가 없습니다.</p>
+            </div>
+        </div>
+    </div>
+    <button type="button"
+            th:onclick="|window.location.href='@{/mydata/mybankandcardlist}'|">
+        모두 불러오기</button>
+</div>
+</body>
+</html>
+
