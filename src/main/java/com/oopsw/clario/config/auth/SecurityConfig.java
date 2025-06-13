@@ -90,7 +90,7 @@ public class SecurityConfig {
                                                 .userService(customOAuth2UserService))
                                 // redirectUrl 세션 기반 분기 처리
                                 .successHandler(customOAuth2SuccessHandler))
-                ;
+        ;
         return http.build();
     }
 
@@ -111,6 +111,3 @@ public class SecurityConfig {
         return new HttpSessionEventPublisher();
     }
 }
-
-
-
