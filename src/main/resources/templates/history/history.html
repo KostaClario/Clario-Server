@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,13 +8,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" th:href="@{/css/bar.css}"/>
+  <link rel="stylesheet" href="/css/bar.css"/>
   <link rel="stylesheet" href="/css/history.css">
   <script src="/js/history.js"></script>
 </head>
 <body>
 <!-- 사이드바 -->
-<aside th:fragment="sidebar" class="sidebar">
+<aside class="sidebar">
   <div class="logo">
     <img src="/img/ClarioLogoTextOnly.png" alt="CLARIO Logo">
   </div>
@@ -30,15 +30,13 @@
 <header class="topbar">
   <div class="topbar-center" id="today-date">날짜 로딩 중...</div>
   <div class="topbar-right">
-    <span class="user-name" th:if="${name != null}" th:text="${name} + '님'">사용자님</span>
-    <input type="hidden" id="memberId" th:value="${memberId}" />
+    <span id = "user-name">사용자</span>
     <button class="logout-btn" onclick="logout()">로그아웃</button>
     <button class="profile-btn" onclick="openProfile()">
-      <img th:src="${profile}" alt="프로필 이미지" class="profile-img" />
+      <img id ="profile-img" alt="프로필" class="profile-img" />
     </button>
   </div>
 </header>
-<div th:replace="~{headerside :: header}"></div>
 <!-- 메인 콘텐츠 -->
 <main class="main">
   <div class="content">
@@ -112,7 +110,7 @@
           <select id = "bankAccountSelect">
             <option></option>
           </select>
-          </div>
+        </div>
         <div class = "modal-row">
           <label>계좌번호 선택</label>
           <select id = "bankAccountNumSelect">
@@ -132,64 +130,64 @@
           <button onclick = "closeModal('incomeModal')">닫기</button>
         </div>
 
+      </div>
     </div>
-  </div>
-  <!-- 결제 모달 -->
-  <div id = "expenseModal" class = "modal">
-    <div class = "modal-content">
-      <h3>카드 결제</h3>
-      <div class="modal-form">
-        <div class="modal-row">
-          <label>거래일자</label>
-          <input type = "date" id = "expenseDate" value = "" >
+    <!-- 결제 모달 -->
+    <div id = "expenseModal" class = "modal">
+      <div class = "modal-content">
+        <h3>카드 결제</h3>
+        <div class="modal-form">
+          <div class="modal-row">
+            <label>거래일자</label>
+            <input type = "date" id = "expenseDate" value = "" >
+          </div>
+          <div class = "modal-row">
+            <label>카드명</label>
+            <select id = "expenseCard">
+              <option></option>
+            </select>
+          </div>
+          <div class="modal-row">
+            <label>가맹점명</label>
+            <input type="text" id="expenseStore" value="" />
+          </div>
+          <div class="modal-row">
+            <label>결제 금액</label>
+            <input type="text" id="expenseAmount" value="" />
+          </div>
+          <div class="modal-row">
+            <label>카테고리</label>
+            <select id="categorySelect">
+              <option value="">카테고리 선택</option>
+            </select>
+          </div>
+          <div class="actions">
+            <button id="saveExpenseBtn" onclick="saveExpense()">결제</button>
+            <button onclick="closeModal('expenseModal')">닫기</button>
+          </div>
         </div>
-        <div class = "modal-row">
-          <label>카드명</label>
-          <select id = "expenseCard">
-            <option></option>
-          </select>
-        </div>
-        <div class="modal-row">
-          <label>가맹점명</label>
-          <input type="text" id="expenseStore" value="" />
-        </div>
-        <div class="modal-row">
-          <label>결제 금액</label>
-          <input type="text" id="expenseAmount" value="" />
-        </div>
-        <div class="modal-row">
-          <label>카테고리</label>
-          <select id="categorySelect">
-            <option value="">카테고리 선택</option>
-          </select>
-        </div>
+      </div>
+    </div>
+    <div id="detailModal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <h4>상세보기</h4>
+        <div class="modal-item"><label>카드명</label><input type="text" id="detail-card-name" readonly></div>
+        <div class="modal-item"><label>카드종류</label><input type="text" id="detail-card-type" readonly></div>
+        <div class="modal-item"><label>카드번호</label><input type="text" id="detail-card-number" readonly></div>
+        <div class="modal-item"><label>거래일자</label><input type="text" id="detail-date" readonly></div>
+        <div class="modal-item"><label>취소일자</label><input type="text" id="detail-cancel-date" readonly></div>
+        <div class="modal-item"><label>거래금액</label><input type="text" id="detail-amount" readonly></div>
+        <div class="modal-item"><label>가맹점명</label><input type="text" id="detail-store" readonly></div>
+        <div class="modal-item"><label>카테고리</label><input type="text" id="detail-category" readonly></div>
+        <div class="modal-item"><label>사업자등록번호</label><input type="text" id="detail-biznum" readonly></div>
         <div class="actions">
-          <button id="saveExpenseBtn" onclick="saveExpense()">결제</button>
-          <button onclick="closeModal('expenseModal')">닫기</button>
+          <button onclick="closeModal('detailModal')">닫기</button>
         </div>
       </div>
     </div>
-  </div>
-  <div id="detailModal" class="modal" style="display: none;">
-    <div class="modal-content">
-      <h4>상세보기</h4>
-      <div class="modal-item"><label>카드명</label><input type="text" id="detail-card-name" readonly></div>
-      <div class="modal-item"><label>카드종류</label><input type="text" id="detail-card-type" readonly></div>
-      <div class="modal-item"><label>카드번호</label><input type="text" id="detail-card-number" readonly></div>
-      <div class="modal-item"><label>거래일자</label><input type="text" id="detail-date" readonly></div>
-      <div class="modal-item"><label>취소일자</label><input type="text" id="detail-cancel-date" readonly></div>
-      <div class="modal-item"><label>거래금액</label><input type="text" id="detail-amount" readonly></div>
-      <div class="modal-item"><label>가맹점명</label><input type="text" id="detail-store" readonly></div>
-      <div class="modal-item"><label>카테고리</label><input type="text" id="detail-category" readonly></div>
-      <div class="modal-item"><label>사업자등록번호</label><input type="text" id="detail-biznum" readonly></div>
-      <div class="actions">
-        <button onclick="closeModal('detailModal')">닫기</button>
-      </div>
-    </div>
-  </div>
   </div>
 </main>
-<script th:inline="javascript">
+<script>
   const today = new Date();
   const days = ['일', '월', '화', '수', '목', '금', '토'];
 
