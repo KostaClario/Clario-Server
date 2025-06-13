@@ -30,16 +30,20 @@ public class dashboardController {
         return "history/history";
     }
 
+//    @GetMapping("/dashboard")
+////    public String dashboard(Model model, @AuthenticationPrincipal CustomOAuth2User user) {
+////        String email = user.getEmail();
+////        Member member = memberService.getMemberByEmail(email);
+////        Integer memberId = member.getMemberId();
+////
+////        model.addAttribute("memberId", memberId);
+////        model.addAttribute("name", member.getName());
+//////        model.addAttribute("user", user);
+////
+////        return "dashboard/dashboard";
+////    }
     @GetMapping("/dashboard")
-    public String dashboard(Model model, @AuthenticationPrincipal CustomOAuth2User user) {
-        String email = user.getEmail();
-        Member member = memberService.getMemberByEmail(email);
-        Integer memberId = member.getMemberId();
-
-        model.addAttribute("memberId", memberId);
-        model.addAttribute("name", member.getName());
-//        model.addAttribute("user", user);
-
-        return "dashboard/dashboard";
+    public String dashboard() {
+        return "headerbar";
     }
 }
