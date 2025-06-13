@@ -3,6 +3,7 @@ package com.oopsw.clario.config.auth;
 
 
 import com.oopsw.clario.config.jwt.JwtAuthorizationFilter;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +33,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(
                         (csrfConfig) -> csrfConfig.disable()
                 )
@@ -42,6 +45,7 @@ public class SecurityConfig {
                                 .requestMatchers("/html/account/login.html").permitAll()
                                 .requestMatchers("/html/account/privacy.html").permitAll()
                                 .requestMatchers("/html/account/join.html").permitAll()
+                                .requestMatchers("/api/member/join").permitAll()
                                 .requestMatchers("/privacy", "/agree", "/join").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/join").permitAll()
 
@@ -75,6 +79,8 @@ public class SecurityConfig {
 //                            event.getResponse().sendRedirect("/loginView?error=session");
 //                        })
 //                )
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2Login(
                         (oauth2) -> oauth2
                                 .loginPage("/html/account/login.html")
@@ -84,7 +90,7 @@ public class SecurityConfig {
                                                 .userService(customOAuth2UserService))
                                 // redirectUrl 세션 기반 분기 처리
                                 .successHandler(customOAuth2SuccessHandler))
-                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
+                ;
         return http.build();
     }
 

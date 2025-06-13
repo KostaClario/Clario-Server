@@ -8,6 +8,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class CorsConfig {
@@ -19,7 +20,7 @@ public class CorsConfig {
         config.addAllowedOrigin("http://localhost:8883"); // 모든 Origin 허용 url로 지정가능
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.setExposedHeaders(Arrays.asList("Authorization")); // 클라이언트가 Authorization 헤더 접근 가능
+        config.setExposedHeaders(List.of("Authorization")); // 쿠키엔 필요 X지만 참고
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config); // 모든 경로에 위 설정 적용
         return new CorsFilter(source);

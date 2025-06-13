@@ -46,6 +46,7 @@ public class JwtUtil {
                     .verify(token);
             return true;
         } catch (JWTVerificationException e) {
+            System.out.println("JWT 검증 실패: " + e.getMessage());
             return false;
         }
     }

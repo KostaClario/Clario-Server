@@ -64,8 +64,9 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
+    // 기본 설정
     axios.defaults.baseURL = 'http://localhost:8883';
-    axios.defaults.withCredentials = true;
+    axios.defaults.withCredentials = true; // 모든 요청에 쿠키 포함
 
     document.getElementById("joinBtn").addEventListener("click", async function () {
         const name = document.getElementById("name").value.trim();
@@ -75,8 +76,15 @@
         const errorDiv = document.getElementById("errorMessage");
         errorDiv.textContent = "";
 
+        // 유효성 검사
         if (!name || !phonenum || !newPassword || !confirmPassword) {
             errorDiv.textContent = "모든 항목을 입력해주세요.";
+            return;
+        }
+
+        const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/;
+        if (!pwRegex.test(newPassword)) {
+            errorDiv.textContent = "비밀번호는 영문자, 숫자, 특수문자를 포함한 8~16자리여야 합니다.";
             return;
         }
 
@@ -85,45 +93,28 @@
             return;
         }
 
-        const data = {
-            name,
-            phonenum,
-            newPassword,
-            confirmPassword
-        };
+        const data = { name, phonenum, newPassword, confirmPassword };
 
         try {
-            const res = await axios.post("/api/member/join", data);
+            const res = await axios.post("/api/member/join", data, {
+                withCredentials: true // 쿠키 포함
+            });
 
-            const message = res.data?.message || "가입 완료";
-            const redirect = res.data?.redirect || "/dashboard.html"
+            console.log("서버 응답:", res.data);
 
-            console.log("s")
-            alert(message);
-            window.location.href = redirect;
+            alert(res.data?.message || "가입 완료");
+            location.href = res.data?.redirect || "/dashboard.html";
         } catch (err) {
-            const msg = err.response?.data || "가입 중 오류가 발생했습니다.";
-            alert(msg)
-            console.log("catch")
-            window.location.href = "/html/account/login.html";
+            const status = err.response?.status;
+            const msg = err.response?.data?.message || err.response?.data || "가입 중 오류가 발생했습니다.";
+            alert(msg);
 
+            if (status === 401) {
+                location.href = "/html/account/login.html";
+            } else {
+                console.error("회원가입 실패:", err);
+            }
         }
-    });
-
-    // 휴대폰 번호 포맷팅
-    document.getElementById("phonenum").addEventListener('input', function (e) {
-        let numbers = e.target.value.replace(/\D/g, '');
-        let formatted = '';
-
-        if (numbers.length < 4) {
-            formatted = numbers;
-        } else if (numbers.length < 8) {
-            formatted = numbers.slice(0, 3) + '-' + numbers.slice(3);
-        } else {
-            formatted = numbers.slice(0, 3) + '-' + numbers.slice(3, 7) + '-' + numbers.slice(7, 11);
-        }
-
-        e.target.value = formatted;
     });
 
     function goToLogin() {

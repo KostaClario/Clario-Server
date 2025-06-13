@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
@@ -111,12 +112,14 @@ public class MemberRestController {
     }
 
     @PostMapping("/join")
-    public ResponseEntity<?> join(@RequestBody UpdateMemberDTO dto,
-                                  @AuthenticationPrincipal CustomOAuth2User user) {
-        if (user == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+    public ResponseEntity<?> join(@RequestBody UpdateMemberDTO dto) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !(authentication.getPrincipal() instanceof CustomOAuth2User)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("유저정보가 없습니다.");
         }
 
+        CustomOAuth2User user = (CustomOAuth2User) authentication.getPrincipal();
         String email = user.getEmail();
 
         if (!dto.getNewPassword().equals(dto.getConfirmPassword())) {
@@ -136,11 +139,11 @@ public class MemberRestController {
             }
         }
 
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "가입 성공");
-        response.put("redirect", "/mydata/mybankandcardlist");
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(Map.of(
+                "message", "가입 성공",
+                "redirect", "/mydata/mybankandcardlist"
+        ));
     }
+
 
 }

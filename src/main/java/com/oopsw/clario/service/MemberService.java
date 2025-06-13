@@ -63,6 +63,7 @@ public class MemberService {
         member.setPhonenum(phonenum);
         member.setPassword(passwordEncoder.encode(password));
         member.setActivation(true);
+        member.setRole(Role.USER);
 
         memberRepository.save(member);
     }
