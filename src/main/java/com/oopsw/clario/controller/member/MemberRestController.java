@@ -33,7 +33,7 @@ public class MemberRestController {
 
     @GetMapping("/loginView")
     public ResponseEntity<String> loginView() {
-        return ResponseEntity.ok("account/login");
+        return ResponseEntity.ok("/html/account/login.html");
     }
 
     @GetMapping("/remove")
@@ -112,13 +112,12 @@ public class MemberRestController {
 
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody UpdateMemberDTO dto,
-                                  HttpSession session) {
-        OAuthAttributes attributes = (OAuthAttributes) session.getAttribute("oauthAttributes");
-        if (attributes == null) {
+                                  @AuthenticationPrincipal CustomOAuth2User user) {
+        if (user == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
         }
 
-        String email = attributes.getEmail();
+        String email = user.getEmail();
 
         if (!dto.getNewPassword().equals(dto.getConfirmPassword())) {
             return ResponseEntity.badRequest().body("비밀번호가 일치하지 않습니다.");
@@ -137,13 +136,11 @@ public class MemberRestController {
             }
         }
 
-        session.removeAttribute("oauthAttributes");
-        session.setAttribute("redirectAfterLogin", "mydata/mybankandcardlist");
-
         Map<String, String> response = new HashMap<>();
         response.put("message", "가입 성공");
         response.put("redirect", "/mydata/mybankandcardlist");
 
         return ResponseEntity.ok(response);
     }
+
 }

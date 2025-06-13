@@ -19,43 +19,43 @@
         <img src="/img/ClarioLogo.png" alt="CLARIO Logo">
     </div>
 
-    <!-- 오른쪽 폼 영역 -->
+    <!-- 오른쪽 입력 영역 -->
     <div class="right2">
         <section class="content">
             <h2 style="text-align:center; margin-bottom:24px;">개인정보 입력</h2>
-            <form id="joinForm" class="form-edit">
+            <div class="form-edit" id="joinSection">
                 <!-- 오류 메시지 -->
                 <div id="errorMessage" style="color:red;"></div>
 
                 <!-- 이름 -->
                 <div class="form-field">
-                    <input type="text" name="name" placeholder="이름" required />
+                    <input type="text" id="name" placeholder="이름" required />
                 </div>
 
                 <!-- 전화번호 -->
                 <div class="form-field">
-                    <input type="text" name="phonenum" placeholder="휴대폰번호 ( - 없이 입력)" required />
+                    <input type="text" id="phonenum" placeholder="휴대폰번호 ( - 없이 입력)" required />
                 </div>
 
                 <!-- 비밀번호 -->
                 <div class="form-field" style="margin-bottom:4px;">
-                    <input type="password" name="password"
+                    <input type="password" id="newPassword"
                            placeholder="비밀번호 (영문자, 숫자, 특수문자 8~16자)"
                            minlength="8" maxlength="16" required />
                 </div>
 
                 <!-- 비밀번호 확인 -->
                 <div class="form-field" style="margin:12px 0 4px;">
-                    <input type="password" name="confirmPassword"
+                    <input type="password" id="confirmPassword"
                            placeholder="비밀번호 확인" required />
                 </div>
 
                 <!-- 버튼 그룹 -->
                 <div class="btn-group" style="margin-top:32px;">
                     <button type="button" class="btn btn-cancel" onclick="goToLogin()">다음에</button>
-                    <button type="submit" class="btn btn-quit">확인</button>
+                    <button type="button" class="btn btn-quit" id="joinBtn">확인</button>
                 </div>
-            </form>
+            </div>
         </section>
     </div>
 </main>
@@ -64,20 +64,54 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
-    axios.defaults.baseURL = 'http://127.0.0.1:8883';
-    function goToLogin() {
-        axios.get('/api/member/loginView')
-            .then(res => {
-                // 서버에서 'account/login' 문자열을 받아서 해당 경로로 리디렉트
-                window.location.href = '/' + res.data;
-            })
-            .catch(err => {
-                alert("로그인 페이지로 이동할 수 없습니다.");
-            });
-    }
+    axios.defaults.baseURL = 'http://localhost:8883';
+    axios.defaults.withCredentials = true;
+
+    document.getElementById("joinBtn").addEventListener("click", async function () {
+        const name = document.getElementById("name").value.trim();
+        const phonenum = document.getElementById("phonenum").value.replace(/-/g, '').trim();
+        const newPassword = document.getElementById("newPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const errorDiv = document.getElementById("errorMessage");
+        errorDiv.textContent = "";
+
+        if (!name || !phonenum || !newPassword || !confirmPassword) {
+            errorDiv.textContent = "모든 항목을 입력해주세요.";
+            return;
+        }
+
+        if (newPassword !== confirmPassword) {
+            errorDiv.textContent = "비밀번호가 일치하지 않습니다.";
+            return;
+        }
+
+        const data = {
+            name,
+            phonenum,
+            newPassword,
+            confirmPassword
+        };
+
+        try {
+            const res = await axios.post("/api/member/join", data);
+
+            const message = res.data?.message || "가입 완료";
+            const redirect = res.data?.redirect || "/dashboard.html"
+
+            console.log("s")
+            alert(message);
+            window.location.href = redirect;
+        } catch (err) {
+            const msg = err.response?.data || "가입 중 오류가 발생했습니다.";
+            alert(msg)
+            console.log("catch")
+            window.location.href = "/html/account/login.html";
+
+        }
+    });
+
     // 휴대폰 번호 포맷팅
-    const phoneInput = document.querySelector('input[name="phonenum"]');
-    phoneInput.addEventListener('input', function (e) {
+    document.getElementById("phonenum").addEventListener('input', function (e) {
         let numbers = e.target.value.replace(/\D/g, '');
         let formatted = '';
 
@@ -92,31 +126,9 @@
         e.target.value = formatted;
     });
 
-    // Axios로 회원가입 전송
-    document.getElementById('joinForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const form = e.target;
-        const data = {
-            name: form.name.value.trim(),
-            phonenum: form.phonenum.value.replace(/-/g, '').trim(),
-            password: form.password.value,
-            confirmPassword: form.confirmPassword.value
-        };
-
-        axios.post('/api/member/join', data)
-            .then(res => {
-                alert('회원가입이 완료되었습니다.');
-                window.location.href = '/mydata/mybankandcardlist';
-            })
-            .catch(err => {
-                const errorMessage = err.response && err.response.data
-                    ? err.response.data
-                    : '회원가입에 실패했습니다. 다시 시도해주세요.';
-                document.getElementById('errorMessage').innerText = errorMessage;
-            });
-    });
+    function goToLogin() {
+        window.location.href = "/html/account/login.html"
+    }
 </script>
-
 </body>
 </html>

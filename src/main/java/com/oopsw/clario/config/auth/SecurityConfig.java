@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.session.SessionRegistry;
@@ -64,7 +65,7 @@ public class SecurityConfig {
                                 .logoutUrl("/logout")
                                 .logoutSuccessUrl("/html/account/login.html")
                                 .invalidateHttpSession(true)
-                                .deleteCookies("JSESSIONID")
+                                .deleteCookies("JSESSIONID", "jwt")
                 )
 //                .sessionManagement(session -> session
 //                        .sessionFixation().migrateSession()
@@ -83,8 +84,7 @@ public class SecurityConfig {
                                                 .userService(customOAuth2UserService))
                                 // redirectUrl 세션 기반 분기 처리
                                 .successHandler(customOAuth2SuccessHandler))
-                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
-        ;
+                .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

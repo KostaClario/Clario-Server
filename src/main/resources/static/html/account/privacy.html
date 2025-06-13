@@ -77,39 +77,15 @@
 </main>
 
 <script>
-    // JWT가 URL 쿼리로 전달된 경우 저장
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
-    if (token) {
-        sessionStorage.setItem('jwt', token);
-        console.log('jwt 저장 성공', token)
-    }
 
-    axios.defaults.baseURL = 'http://127.0.0.1:8883';
+    axios.defaults.baseURL = 'http://localhost:8883';
+    axios.defaults.withCredentials = true; // 쿠키 자동 전송 설정
     function goToLogin() {
-        // 백엔드에서 loginView 경로를 응답으로 주기 때문에 해당 경로로 이동
-        axios.get('/api/member/loginView')
-            .then(response => {
-                const path = response.data;
-                window.location.href = path.startsWith('/') ? path : `/${path}`;
-            })
-            .catch(error => {
-                console.error('로그인 이동 오류:', error);
-                alert('로그인 페이지로 이동 중 오류가 발생했습니다.');
-            });
+        window.location.href = "/html/account/login.html"
     }
 
     function submitConsent() {
-        // 동의 버튼 누르면 /api/member/agree 요청 -> 응답에 따라 다음 페이지로 이동
-        axios.get('/api/member/agree')
-            .then(response => {
-                const path = response.data;
-                window.location.href = path.startsWith('/') ? path : `/${path}`;
-            })
-            .catch(error => {
-                console.error('동의 처리 오류:', error);
-                alert('동의 처리 중 문제가 발생했습니다.');
-            });
+        window.location.href="/html/account/join.html"
     }
 </script>
 </body>

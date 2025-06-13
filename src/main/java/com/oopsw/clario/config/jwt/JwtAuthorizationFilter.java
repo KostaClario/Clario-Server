@@ -5,6 +5,7 @@ import com.oopsw.clario.domain.member.Member;
 import com.oopsw.clario.domain.member.MemberRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,6 @@ import java.util.Collections;
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
-    private final JwtProperties jwtProperties;
     private final MemberRepository memberRepository;
 
     @Override
@@ -32,40 +32,45 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        String header = request.getHeader(jwtProperties.getHeader());
+        String token = extractTokenFromCookie(request);
 
-        // JWT 헤더 확인
-        if (header == null || !header.startsWith(jwtProperties.getPrefix() + " ")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
+        if (token != null && jwtUtil.validateToken(token)) {
+            String email = jwtUtil.getUsername(token);
 
-        // 토큰 추출
-        String token = header.replace(jwtProperties.getPrefix() + " ", "");
-        String email = jwtUtil.getUsername(token);
+            if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                Member member = memberRepository.findByEmail(email).orElse(null);
 
-        // 인증 처리
-        if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            Member member = memberRepository.findByEmail(email).orElse(null);
+                if (member != null && Boolean.TRUE.equals(member.getActivation())) {
+                    CustomOAuth2User principal = new CustomOAuth2User(
+                            member.getName(),
+                            member.getEmail(),
+                            null, // attributes 없음
+                            Collections.singleton(() -> member.getRoleKey())
+                    );
 
-            if (member != null && Boolean.TRUE.equals(member.getActivation())) {
-                CustomOAuth2User principal = new CustomOAuth2User(
-                        member.getName(),
-                        member.getEmail(),
-                        null, // attributes는 null 처리
-                        Collections.singleton(() -> member.getRoleKey())
-                );
+                    UsernamePasswordAuthenticationToken authToken =
+                            new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
 
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        principal, null, principal.getAuthorities());
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
 
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authToken);
-
-                log.info("JWT 인증 성공: {}", email);
+                    log.info("JWT 인증 성공: {}", email);
+                }
             }
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    // 쿠키에서 "jwt" 토큰 추출
+    private String extractTokenFromCookie(HttpServletRequest request) {
+        if (request.getCookies() == null) return null;
+
+        for (Cookie cookie : request.getCookies()) {
+            if ("jwt".equals(cookie.getName())) {
+                return cookie.getValue();
+            }
+        }
+        return null;
     }
 }
