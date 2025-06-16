@@ -47,21 +47,12 @@ public class SecurityConfig {
                                 .requestMatchers("/html/account/privacy.html").permitAll()
                                 .requestMatchers("/html/account/join.html").permitAll()
                                 .requestMatchers("/api/member/join").permitAll()
-                                .requestMatchers("/privacy", "/agree", "/join").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/join").permitAll()
 
                                 // OAuth2 관련
                                 .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
 
-                                // 계좌 카드 연동
-                                .requestMatchers("/mydata/**").authenticated()
-
                                 // 통계
-                                .requestMatchers("/api/**", "/statistics", "/card", "/dashboard").authenticated()
-
-                                // 인증 필요한 기능
-                                .requestMatchers("/account/edit", "/account/remove",
-                                        "/account/reset-password", "/account/verify-password").authenticated()
+                                .requestMatchers("/api/**").authenticated()
 
                                 .anyRequest().authenticated()
                 )

@@ -18,10 +18,10 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowCredentials(true);
-        config.addAllowedOriginPattern("*");
+        config.addAllowedOrigin("http://localhost:8884"); // UI 서버
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.addExposedHeader("Authorization"); // 프론트에서 Authorization 헤더 접근 가능하게
+        config.setExposedHeaders(List.of("Authorization")); // 클라이언트에서 헤더 접근 가능
 
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);

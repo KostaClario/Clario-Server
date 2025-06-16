@@ -40,9 +40,9 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
         String redirectUrl;
         if (member != null && Boolean.TRUE.equals(member.getActivation())) {
-            redirectUrl = "http://localhost:8883/dashboard.html?token=" + token;
+            redirectUrl = "http://localhost:8884/html/dashboard/dashboard.html?token=" + token;
         } else {
-            redirectUrl = "http://localhost:8883/html/account/privacy.html?token=" + token;
+            redirectUrl = "http://localhost:8884/html/account/privacy.html?token=" + token;
         }
 
         log.info("OAuth2 로그인 성공 - 리다이렉트: {}", redirectUrl);
