@@ -36,14 +36,15 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         String email = attributes.getEmail();
 
         Member member = memberRepository.findByEmail(email).orElse(null);
+
         String role = (member != null && Boolean.TRUE.equals(member.getActivation()))
                 ? member.getRoleKey()
-                : Role.USER.getKey();
+                : Role.USER.getKey();  // 기본 권한
 
         log.info("OAuth 로그인 유저: email={}, 기존 회원 여부={}, 활성 상태={}", email, member != null, member != null && member.getActivation());
 
         return new CustomOAuth2User(
-                member != null ? member.getName() : null,  // name은 없으면 null
+                email,
                 email,
                 attributes.getAttributes(),
                 Collections.singleton(new SimpleGrantedAuthority(role))

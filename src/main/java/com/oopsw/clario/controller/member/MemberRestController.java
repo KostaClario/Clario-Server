@@ -2,6 +2,7 @@ package com.oopsw.clario.controller.member;
 
 import com.oopsw.clario.config.auth.CustomOAuth2User;
 import com.oopsw.clario.config.auth.authdto.OAuthAttributes;
+import com.oopsw.clario.config.jwt.JwtUtil;
 import com.oopsw.clario.domain.member.Member;
 import com.oopsw.clario.dto.member.UpdateMemberDTO;
 import com.oopsw.clario.service.MemberService;
@@ -27,9 +28,11 @@ import java.util.Optional;
 public class MemberRestController {
 
     private final MemberService memberService;
+    private final JwtUtil jwtUtil;
 
-    public MemberRestController(MemberService memberService) {
+    public MemberRestController(MemberService memberService, JwtUtil jwtUtil) {
         this.memberService = memberService;
+        this.jwtUtil = jwtUtil;
     }
 
 
@@ -92,7 +95,7 @@ public class MemberRestController {
         CustomOAuth2User user = (CustomOAuth2User) authentication.getPrincipal();
         String email = user.getEmail();
 
-        if (!dto.getNewPassword().equals(dto.getConfirmPassword())) {
+        if (dto.getNewPassword() == null || !dto.getNewPassword().equals(dto.getConfirmPassword())) {
             return ResponseEntity.badRequest().body("비밀번호가 일치하지 않습니다.");
         }
 
@@ -109,11 +112,12 @@ public class MemberRestController {
             }
         }
 
+        String newToken = jwtUtil.createToken(email);
+
         return ResponseEntity.ok(Map.of(
                 "message", "가입 성공",
-                "redirect", "/html/mydata/mybankandcardlist.html"
+                "redirect", "/html/mydata/mybankandcardlist.html",
+                "token", newToken
         ));
     }
-
-
 }

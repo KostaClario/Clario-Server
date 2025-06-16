@@ -35,7 +35,7 @@ public class CustomOAuth2User implements OAuth2User {
 
     @Override
     public String getName() {
-        return name;
+        return name != null ? name : email; // fallback 보장
     }
 
     public String getPhoto() {

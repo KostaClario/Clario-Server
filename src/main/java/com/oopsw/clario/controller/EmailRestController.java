@@ -14,11 +14,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-public class EmailController {
+public class EmailRestController {
 
     private final EmailService emailService;
 
-    public EmailController(EmailService emailService) {
+    public EmailRestController(EmailService emailService) {
         this.emailService = emailService;
     }
 

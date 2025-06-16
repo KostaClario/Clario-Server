@@ -14,39 +14,28 @@ public class JwtUtil {
 
     private final JwtProperties jwtProperties;
 
-    // JWT 생성
-    public String generateToken(String email) {
-        Date now = new Date();
-        Date expiry = new Date(now.getTime() + jwtProperties.getExpiration());
-
+    public String createToken(String email){
         return JWT.create()
                 .withSubject(email)
-                .withIssuedAt(now)
-                .withExpiresAt(expiry)
+                .withIssuedAt(new Date())
+                .withExpiresAt(new Date(System.currentTimeMillis() + jwtProperties.getExpiration()))
                 .sign(Algorithm.HMAC256(jwtProperties.getSecret()));
     }
 
-    // JWT 검증 후 이메일 추출
-    public String getUsername(String token) {
-        try {
-            return JWT.require(Algorithm.HMAC256(jwtProperties.getSecret()))
-                    .build()
-                    .verify(token)
-                    .getSubject();
-        } catch (JWTVerificationException e) {
-            return null; // 잘못된 토큰
-        }
+    public String extractEmail(String token){
+        return JWT.require(Algorithm.HMAC256(jwtProperties.getSecret()))
+                .build()
+                .verify(token)
+                .getSubject();
     }
 
-    // 유효한 토큰인지 검사
-    public boolean validateToken(String token) {
-        try {
+    public boolean isValid(String token){
+        try{
             JWT.require(Algorithm.HMAC256(jwtProperties.getSecret()))
                     .build()
                     .verify(token);
             return true;
-        } catch (JWTVerificationException e) {
-            System.out.println("JWT 검증 실패: " + e.getMessage());
+        }catch(JWTVerificationException e){
             return false;
         }
     }

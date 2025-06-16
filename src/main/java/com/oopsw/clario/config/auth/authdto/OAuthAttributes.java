@@ -5,6 +5,7 @@ import com.oopsw.clario.domain.member.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -71,10 +72,13 @@ public class OAuthAttributes implements Serializable {
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {
 
         String email = (String) attributes.get("email");
+        if (email == null) {
+            throw new OAuth2AuthenticationException("구글 로그인 결과에 이메일이 없음");
+        }
 
         log.info("email: " + attributes.get("email"));
         return OAuthAttributes.builder()
-                .name(email)
+                .name(null)
                 .email(email)
                 .oauth("google")
                 .attributes(attributes)

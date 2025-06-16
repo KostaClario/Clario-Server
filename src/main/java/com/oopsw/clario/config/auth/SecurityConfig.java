@@ -46,7 +46,7 @@ public class SecurityConfig {
                                 .requestMatchers("/html/account/login.html").permitAll()
                                 .requestMatchers("/html/account/privacy.html").permitAll()
                                 .requestMatchers("/html/account/join.html").permitAll()
-                                .requestMatchers("/api/member/join").permitAll()
+                                .requestMatchers(HttpMethod.POST,"/api/member/join").permitAll()
 
                                 // OAuth2 관련
                                 .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
@@ -55,13 +55,6 @@ public class SecurityConfig {
                                 .requestMatchers("/api/**").authenticated()
 
                                 .anyRequest().authenticated()
-                )
-                .logout(
-                        (logoutConfig) -> logoutConfig
-                                .logoutUrl("/logout")
-                                .logoutSuccessUrl("/html/account/login.html")
-                                .invalidateHttpSession(true)
-                                .deleteCookies("JSESSIONID", "jwt")
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -72,7 +65,7 @@ public class SecurityConfig {
                                 .userInfoEndpoint(
                                         (userInfo) -> userInfo
                                                 .userService(customOAuth2UserService))
-                                // redirectUrl 세션 기반 분기 처리
+                                // redirectUrl 분기 처리
                                 .successHandler(customOAuth2SuccessHandler))
         ;
         return http.build();
@@ -81,17 +74,5 @@ public class SecurityConfig {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    // 세션 레지스트리 등록
-    @Bean
-    public SessionRegistry sessionRegistry() {
-        return new SessionRegistryImpl();
-    }
-
-    // 로그아웃/세션 만료 시 SessionRegistry에서 제거되도록 이벤트 퍼블리셔 등록
-    @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new HttpSessionEventPublisher();
     }
 }
