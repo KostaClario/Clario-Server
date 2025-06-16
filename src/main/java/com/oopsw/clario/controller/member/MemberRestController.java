@@ -111,7 +111,7 @@ public class MemberRestController {
 
         return ResponseEntity.ok(Map.of(
                 "message", "가입 성공",
-                "redirect", "/mydata/mybankandcardlist"
+                "redirect", "/html/mydata/mybankandcardlist.html"
         ));
     }
 
