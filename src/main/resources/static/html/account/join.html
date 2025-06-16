@@ -64,9 +64,16 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
-    // 기본 설정
+    // 세션스토리지에서 JWT 꺼내서 axios에 설정
+    const token = sessionStorage.getItem("jwt");
+    if (!token) {
+        alert("토큰이 만료되었거나 존재하지 않습니다. 다시 로그인해주세요.");
+        window.location.href = "/html/account/login.html";
+    }
+
     axios.defaults.baseURL = 'http://localhost:8883';
-    axios.defaults.withCredentials = true; // 모든 요청에 쿠키 포함
+    axios.defaults.withCredentials = false; // 세션스토리지 방식은 false
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
     document.getElementById("joinBtn").addEventListener("click", async function () {
         const name = document.getElementById("name").value.trim();
@@ -96,10 +103,7 @@
         const data = { name, phonenum, newPassword, confirmPassword };
 
         try {
-            const res = await axios.post("/api/member/join", data, {
-                withCredentials: true // 쿠키 포함
-            });
-
+            const res = await axios.post("/api/member/join", data);
             console.log("서버 응답:", res.data);
 
             alert(res.data?.message || "가입 완료");
@@ -110,7 +114,7 @@
             alert(msg);
 
             if (status === 401) {
-                location.href = "/html/account/login.html";
+                window.location.href = "/html/account/login.html";
             } else {
                 console.error("회원가입 실패:", err);
             }
@@ -118,8 +122,9 @@
     });
 
     function goToLogin() {
-        window.location.href = "/html/account/login.html"
+        window.location.href = "/html/account/login.html";
     }
 </script>
+
 </body>
 </html>

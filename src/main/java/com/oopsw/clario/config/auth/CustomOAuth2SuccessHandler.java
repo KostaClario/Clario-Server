@@ -33,30 +33,20 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
         // JWT 생성
         String token = jwtUtil.generateToken(email);
+        log.info("JWT 토큰 생성 완료");
 
-        // JWT를 HttpOnly + Secure 쿠키로 설정
-        ResponseCookie cookie = ResponseCookie.from("jwt", token)
-                .httpOnly(true)  // 자바스크립트 접근 불가 -> xss 방어
-                .secure(false) // 개발 중에는 false 허용 가능
-                .path("/") // 전체경로 쿠키 유효
-                .maxAge(60 * 30) // 30분
-                .sameSite("Lax")
-                .build();
-
-        response.setHeader("Set-Cookie", cookie.toString());
-        log.info("JWT 쿠키 발급 완료");
-
-        // 회원 활성화 여부 확인 후 리다이렉트
+        // 회원 활성화 여부 확인
         Member member = memberRepository.findByEmail(email).orElse(null);
 
         String redirectUrl;
         if (member != null && Boolean.TRUE.equals(member.getActivation())) {
-            redirectUrl = "http://localhost:8883/dashboard.html";
+            redirectUrl = "http://localhost:8884/html/dashboard/dashboard.html?token=" + token;
         } else {
-            redirectUrl = "http://localhost:8883/html/account/privacy.html";
+            redirectUrl = "http://localhost:8884/html/account/privacy.html?token=" + token;
         }
 
         log.info("OAuth2 로그인 성공 - 리다이렉트: {}", redirectUrl);
         response.sendRedirect(redirectUrl);
     }
+
 }

@@ -32,15 +32,6 @@ public class MemberRestController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/loginView")
-    public ResponseEntity<String> loginView() {
-        return ResponseEntity.ok("/html/account/login.html");
-    }
-
-    @GetMapping("/remove")
-    public ResponseEntity<String> removePage() {
-        return ResponseEntity.ok("account/user-remove");
-    }
 
     @PostMapping("/remove")
     public ResponseEntity<?> remove(@AuthenticationPrincipal CustomOAuth2User user,
@@ -89,27 +80,6 @@ public class MemberRestController {
         return ResponseEntity.ok("회원 정보 수정 완료");
     }
 
-    @GetMapping("/loginSuccess")
-    public ResponseEntity<String> loginSuccess(HttpSession session) {
-        log.info("세션 ID (loginSuccess): " + session.getId());
-        String redirect = (String) session.getAttribute("redirectUrl");
-        log.info("redirectAfterLogin: " + redirect);
-        return ResponseEntity.ok(redirect != null ? redirect : "/");
-    }
-
-    @GetMapping("/privacy")
-    public ResponseEntity<?> privacy(HttpSession session) {
-        OAuthAttributes attributes = (OAuthAttributes) session.getAttribute("oauthAttributes");
-        if (attributes == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
-        }
-        return ResponseEntity.ok("account/privacy");
-    }
-
-    @GetMapping("/agree")
-    public ResponseEntity<String> agree() {
-        return ResponseEntity.ok("/html/account/join.html");
-    }
 
     @PostMapping("/join")
     public ResponseEntity<?> join(@RequestBody UpdateMemberDTO dto) {
