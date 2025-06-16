@@ -33,10 +33,10 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                                     FilterChain filterChain) throws ServletException, IOException {
         log.info(">>> JwtAuthorizationFilter 진입: {}", request.getRequestURI());
 
-        String token = extractTokenFromCookie(request);
+        String token = extractTokenFromHeader(request);
 
         if (token == null) {
-            log.warn("JWT 토큰이 쿠키에 없음");
+            log.warn("JWT 토큰이 Authorization 헤더에 없음");
             filterChain.doFilter(request, response);
             return;
         }
@@ -99,23 +99,32 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
+        // 활성화된 사용자 인증 객체 설정
+        CustomOAuth2User principal = new CustomOAuth2User(
+                member.getName(),
+                member.getEmail(),
+                Collections.emptyMap(),
+                Collections.singleton(() -> member.getRoleKey())
+        );
+
+        UsernamePasswordAuthenticationToken authToken =
+                new UsernamePasswordAuthenticationToken(principal, null, principal.getAuthorities());
+
+        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        SecurityContextHolder.getContext().setAuthentication(authToken);
+
+        log.info("인증 객체 설정 완료");
+        filterChain.doFilter(request, response);
     }
 
-
-    // 쿠키에서 "jwt" 토큰 추출
-    private String extractTokenFromCookie(HttpServletRequest request) {
-        if (request.getCookies() == null) {
-            log.warn("쿠키 없음");
-            return null;
+    // Authorization 헤더에서 JWT 추출
+    private String extractTokenFromHeader(HttpServletRequest request) {
+        String header = request.getHeader("Authorization");
+        if (header != null && header.startsWith("Bearer ")) {
+            return header.substring(7);
         }
-
-        for (Cookie cookie : request.getCookies()) {
-            log.info("쿠키 이름: {}, 값: {}", cookie.getName(), cookie.getValue());
-            if ("jwt".equals(cookie.getName())) {
-                return cookie.getValue();
-            }
-        }
-        log.warn("jwt 쿠키 없음");
         return null;
     }
+
 }

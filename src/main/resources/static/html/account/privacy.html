@@ -77,16 +77,41 @@
 </main>
 
 <script>
+    // 1. URL에서 토큰 파라미터 가져오기
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
 
+
+    // 2. 토큰이 있다면 세션스토리지에 저장
+    if (token) {
+        sessionStorage.setItem("jwt", token);
+        console.log("[privacy.html] JWT 저장 완료:", token);
+
+        // URL에서 토큰 제거 (보안상 노출 방지)
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // 3. 토큰이 없으면 로그인 페이지로 이동
+    if (!sessionStorage.getItem("jwt")) {
+        alert("로그인이 필요합니다.");
+        window.location.href = "/html/account/login.html";
+    }
+
+    // 4. Axios 설정
     axios.defaults.baseURL = 'http://localhost:8883';
-    axios.defaults.withCredentials = true; // 쿠키 자동 전송 설정
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + sessionStorage.getItem("jwt");
+    axios.defaults.withCredentials = false;
+
+    // 5. 버튼 클릭 핸들러
     function goToLogin() {
-        window.location.href = "/html/account/login.html"
+        window.location.href = "/html/account/login.html";
     }
 
     function submitConsent() {
-        window.location.href="/html/account/join.html"
+        window.location.href = "/html/account/join.html";
     }
 </script>
+
+
 </body>
 </html>

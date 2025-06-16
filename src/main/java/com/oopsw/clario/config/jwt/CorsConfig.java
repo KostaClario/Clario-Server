@@ -14,15 +14,17 @@ import java.util.List;
 public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowCredentials(true); // 클라이언트에서 쿠키 전송 허용
-        config.addAllowedOrigin("http://localhost:8883"); // 모든 Origin 허용 url로 지정가능
+        config.setAllowCredentials(true);
+        config.addAllowedOriginPattern("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
-        config.setExposedHeaders(List.of("Authorization")); // 쿠키엔 필요 X지만 참고
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config); // 모든 경로에 위 설정 적용
+        config.addExposedHeader("Authorization"); // 프론트에서 Authorization 헤더 접근 가능하게
+
+        source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
 }
+

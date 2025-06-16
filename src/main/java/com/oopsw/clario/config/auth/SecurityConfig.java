@@ -34,6 +34,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                .cors(Customizer.withDefaults())
                 .csrf(
                         (csrfConfig) -> csrfConfig.disable()
                 )
@@ -71,14 +72,6 @@ public class SecurityConfig {
                                 .invalidateHttpSession(true)
                                 .deleteCookies("JSESSIONID", "jwt")
                 )
-//                .sessionManagement(session -> session
-//                        .sessionFixation().migrateSession()
-//                        .maximumSessions(1)
-//                        .maxSessionsPreventsLogin(true)
-//                        .expiredSessionStrategy(event -> {
-//                            event.getResponse().sendRedirect("/loginView?error=session");
-//                        })
-//                )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2Login(
