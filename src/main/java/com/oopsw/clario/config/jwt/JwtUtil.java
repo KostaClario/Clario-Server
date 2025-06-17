@@ -3,6 +3,7 @@ package com.oopsw.clario.config.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -14,28 +15,47 @@ public class JwtUtil {
 
     private final JwtProperties jwtProperties;
 
-    public String createToken(String email){
+    // JWT 생성
+    public String generateToken(String email, String pictureUrl) {
+        Date now = new Date();
+        Date expiry = new Date(now.getTime() + jwtProperties.getExpiration());
+
         return JWT.create()
                 .withSubject(email)
-                .withIssuedAt(new Date())
-                .withExpiresAt(new Date(System.currentTimeMillis() + jwtProperties.getExpiration()))
+                .withClaim("picture", pictureUrl)
+                .withIssuedAt(now)
+                .withExpiresAt(expiry)
                 .sign(Algorithm.HMAC256(jwtProperties.getSecret()));
     }
 
-    public String extractEmail(String token){
-        return JWT.require(Algorithm.HMAC256(jwtProperties.getSecret()))
-                .build()
-                .verify(token)
-                .getSubject();
+    // JWT 검증 후 이메일 추출
+    public String getUsername(String token) {
+        try {
+            return JWT.require(Algorithm.HMAC256(jwtProperties.getSecret()))
+                    .build()
+                    .verify(token)
+                    .getSubject();
+        } catch (JWTVerificationException e) {
+            return null; // 잘못된 토큰
+        }
     }
 
-    public boolean isValid(String token){
-        try{
+    public String getClaim(String token, String key) {
+        DecodedJWT jwt = JWT.require(Algorithm.HMAC256(jwtProperties.getSecret()))
+                .build()
+                .verify(token);
+        return jwt.getClaim(key).asString();
+    }
+
+    // 유효한 토큰인지 검사
+    public boolean validateToken(String token) {
+        try {
             JWT.require(Algorithm.HMAC256(jwtProperties.getSecret()))
                     .build()
                     .verify(token);
             return true;
-        }catch(JWTVerificationException e){
+        } catch (JWTVerificationException e) {
+            System.out.println("JWT 검증 실패: " + e.getMessage());
             return false;
         }
     }

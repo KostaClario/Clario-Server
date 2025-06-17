@@ -26,30 +26,28 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
-                                        Authentication authentication) throws IOException {
+                                        Authentication authentication) throws IOException, ServletException {
 
         CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getEmail();
+        String picture = oAuth2User.getPhoto();
 
         // JWT 생성
-        String token = jwtUtil.createToken(email);
+        String token = jwtUtil.generateToken(email, picture);
         log.info("JWT 토큰 생성 완료");
 
         // 회원 활성화 여부 확인
         Member member = memberRepository.findByEmail(email).orElse(null);
-        boolean activated = member != null && Boolean.TRUE.equals(member.getActivation());
 
         String redirectUrl;
-        if (activated) {
-            redirectUrl = "http://localhost:8884/index.html?token=" + token;
+        if (member != null && Boolean.TRUE.equals(member.getActivation())) {
+            redirectUrl = "http://localhost:8884/html/account/auth-success.html?token=" + token;
         } else {
             redirectUrl = "http://localhost:8884/html/account/privacy.html?token=" + token;
         }
 
+        log.info("OAuth2 로그인 성공 - 리다이렉트: {}", redirectUrl);
         response.sendRedirect(redirectUrl);
-
-        log.info("JWT 토큰: {}", token);
-        log.info("활성화 여부: {}", activated);
     }
 
 }
