@@ -31,7 +31,7 @@ public class BarController {
         }
 
         String email = user.getEmail();
-        log.info("🔑 인증된 사용자 이메일: {}", email);
+        log.info("인증된 사용자 이메일: {}", email);
 
         Member member = memberService.getMemberByEmail(email);
         if (member == null) {

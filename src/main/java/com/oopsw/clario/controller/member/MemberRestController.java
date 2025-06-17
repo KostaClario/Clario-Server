@@ -94,6 +94,7 @@ public class MemberRestController {
 
         CustomOAuth2User user = (CustomOAuth2User) authentication.getPrincipal();
         String email = user.getEmail();
+        String picture = user.getPhoto();
 
         if (dto.getNewPassword() == null || !dto.getNewPassword().equals(dto.getConfirmPassword())) {
             return ResponseEntity.badRequest().body("비밀번호가 일치하지 않습니다.");
@@ -112,7 +113,7 @@ public class MemberRestController {
             }
         }
 
-        String newToken = jwtUtil.createToken(email);
+        String newToken = jwtUtil.generateToken(email, picture);
 
         return ResponseEntity.ok(Map.of(
                 "message", "가입 성공",

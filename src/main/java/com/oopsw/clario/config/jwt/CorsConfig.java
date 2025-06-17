@@ -17,6 +17,7 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
+        config.setAllowCredentials(false);
         config.addAllowedOrigin("http://localhost:8884");
         config.addAllowedOrigin("http://127.0.0.1:8884"); // 필요시 IP 기반도 추가
         config.addAllowedHeader("*");
