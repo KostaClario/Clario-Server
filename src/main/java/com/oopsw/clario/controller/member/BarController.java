@@ -22,7 +22,7 @@ public class BarController {
     @Autowired
     MemberService memberService;
 
-    @GetMapping("/bar")
+    @GetMapping(value = "/bar", produces = "application/json")
     public ResponseEntity<?> barInfo(@AuthenticationPrincipal CustomOAuth2User user) {
 
         if (user == null) {
