@@ -3,6 +3,7 @@ package com.oopsw.clario.config.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +16,13 @@ public class JwtUtil {
     private final JwtProperties jwtProperties;
 
     // JWT 생성
-    public String generateToken(String email) {
+    public String generateToken(String email, String pictureUrl) {
         Date now = new Date();
         Date expiry = new Date(now.getTime() + jwtProperties.getExpiration());
 
         return JWT.create()
                 .withSubject(email)
+                .withClaim("picture", pictureUrl)
                 .withIssuedAt(now)
                 .withExpiresAt(expiry)
                 .sign(Algorithm.HMAC256(jwtProperties.getSecret()));
@@ -36,6 +38,13 @@ public class JwtUtil {
         } catch (JWTVerificationException e) {
             return null; // 잘못된 토큰
         }
+    }
+
+    public String getClaim(String token, String key) {
+        DecodedJWT jwt = JWT.require(Algorithm.HMAC256(jwtProperties.getSecret()))
+                .build()
+                .verify(token);
+        return jwt.getClaim(key).asString();
     }
 
     // 유효한 토큰인지 검사

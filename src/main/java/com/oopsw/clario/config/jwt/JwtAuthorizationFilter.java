@@ -18,6 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -100,11 +101,13 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             return;
         }
 
+        String picture = jwtUtil.getClaim(token, "picture");
+
         // 활성화된 사용자 인증 객체 설정
         CustomOAuth2User principal = new CustomOAuth2User(
                 member.getName(),
                 member.getEmail(),
-                Collections.emptyMap(),
+                Map.of("picture", picture),
                 Collections.singleton(() -> member.getRoleKey())
         );
 

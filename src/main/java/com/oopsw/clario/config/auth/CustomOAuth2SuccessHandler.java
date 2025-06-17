@@ -30,9 +30,10 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
         CustomOAuth2User oAuth2User = (CustomOAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getEmail();
+        String picture = oAuth2User.getPhoto();
 
         // JWT 생성
-        String token = jwtUtil.generateToken(email);
+        String token = jwtUtil.generateToken(email, picture);
         log.info("JWT 토큰 생성 완료");
 
         // 회원 활성화 여부 확인
@@ -40,7 +41,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
 
         String redirectUrl;
         if (member != null && Boolean.TRUE.equals(member.getActivation())) {
-            redirectUrl = "http://localhost:8884/html/dashboard/dashboard.html?token=" + token;
+            redirectUrl = "http://localhost:8884/html/account/auth-success.html?token=" + token;
         } else {
             redirectUrl = "http://localhost:8884/html/account/privacy.html?token=" + token;
         }
