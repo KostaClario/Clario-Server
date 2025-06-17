@@ -41,6 +41,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         (auth) -> auth
                                 .requestMatchers("/", "/css/**", "/js/**", "/img/**", "/account-css/**").permitAll()
+                                .requestMatchers("/swagger-ui/**",
+                                                "/swagger-ui.html",
+                                                "/v3/api-docs",
+                                                "/v3/api-docs/**").permitAll()
 
                                 // 로그인 및 회원가입 관련
                                 .requestMatchers("/html/account/login.html").permitAll()
