@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -41,7 +42,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         (auth) -> auth
                                 .requestMatchers("/", "/css/**", "/js/**", "/img/**", "/account-css/**").permitAll()
-
                                 // 로그인 및 회원가입 관련
                                 .requestMatchers("/html/account/login.html").permitAll()
                                 .requestMatchers("/html/account/privacy.html").permitAll()
@@ -54,7 +54,20 @@ public class SecurityConfig {
                                 // 통계
                                 .requestMatchers("/api/**").authenticated()
 
+                                //Swagger
+                                .requestMatchers("/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/v3/api-docs",
+                                        "/v3/api-docs/**")
+                                .access((authentication, context) -> {
+                                    String remoteAddress = context.getRequest().getRemoteAddr();
+                                    if ("127.0.0.1".equals(remoteAddress)) {
+                                        return new AuthorizationDecision(true);  // 내부 개발자 허용
+                                    }
+                                    return new AuthorizationDecision(false);     // 외부는 차단
+                                })
                                 .anyRequest().authenticated()
+
                 )
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

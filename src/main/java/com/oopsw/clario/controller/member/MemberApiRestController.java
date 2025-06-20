@@ -21,7 +21,7 @@ public class MemberApiController {
     public MemberApiController(MemberService memberService) {
         this.memberService = memberService;
     }
-    //헤더 사이드바에서 유저 정보 가져오기
+
     @GetMapping("/api/userinfo")
     public Map<String, Object> getUserInfo(@AuthenticationPrincipal CustomOAuth2User user) {
         Map<String, Object> result = new HashMap<>();
