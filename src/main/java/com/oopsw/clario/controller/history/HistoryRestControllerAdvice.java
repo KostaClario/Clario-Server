@@ -10,7 +10,7 @@ import org.springframework.web.client.ResourceAccessException;
 
 @RestControllerAdvice
 @RequiredArgsConstructor
-public class HistoryAdvice {
+public class HistoryRestControllerAdvice {
 
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<String> historyNullException(NullPointerException e){

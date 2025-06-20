@@ -14,11 +14,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/account")
-public class MemberApiController {
+public class MemberApiRestController {
 
     private final MemberService memberService;
 
-    public MemberApiController(MemberService memberService) {
+    public MemberApiRestController(MemberService memberService) {
         this.memberService = memberService;
     }
 
