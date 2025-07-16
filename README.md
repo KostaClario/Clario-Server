@@ -24,7 +24,7 @@
 <br>
 
 ## 🛠️ 소프트웨어 아키텍처
-<img width="1424" height="740" alt="Image" src="https://github.com/user-attachments/assets/5ac8dd45-de41-4c32-bafe-75b303c69bf7" />
+<img width="1424" height="740" alt="Image" src="https://github.com/user-attachments/assets/70d897d1-ec23-4f5d-a82c-dd7d2f37a6aa" />
 <br>
 
 ## 🛠️ ERD
